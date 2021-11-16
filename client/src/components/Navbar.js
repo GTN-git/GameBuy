@@ -15,10 +15,6 @@ const rightItems = [
   { as: "a", content: "Register", key: "register" }
 ];
 
-const search = {
-
-}
-
 const NavbarMobile = (props) => {
   const {
     leftItems,
