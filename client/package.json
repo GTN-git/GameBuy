@@ -4,11 +4,11 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.7",
+    "@apollo/react-hooks": "^4.0.0",
+    "@stripe/stripe-js": "^1.21.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "@apollo/react-hooks": "^4.0.0",
-    "@stripe/stripe-js": "^1.21.1",
     "apollo-boost": "^0.4.9",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.12.6",
@@ -40,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "web-vitals": "^2.1.2"
   }
 }
