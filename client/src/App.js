@@ -46,7 +46,7 @@ function App() {
           <style>{mediaStyles}</style>
           <MediaContextProvider>
             <Navbar Media={Media}/>
-            <img src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
+            <img src="https://react.semantic-ui.com/images/wireframe/paragraph.png" alt="Placeholder"/>
             <Switch>
               <Route exact path='/' component={Main} />
               <Route exact path='/login' component={Login} />

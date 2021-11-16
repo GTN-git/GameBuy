@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Icon, Image, Menu, Sidebar } from "semantic-ui-react";
+import { Icon, Image, Menu, Sidebar } from "semantic-ui-react";
 
 const leftItems = [
   {
@@ -14,6 +14,22 @@ const rightItems = [
   { as: "a", content: "Login", key: "login" },
   { as: "a", content: "Register", key: "register" }
 ];
+
+const Search = () => {
+  return (
+      <div className='ui right aligned category search item'>
+      <div className='ui transparent icon input'>
+        <input
+          className='prompt'
+          type='text'
+          placeholder='Search for games...'
+        />
+        <i className='search link icon' />
+      </div>
+      <div className='results' />
+    </div>
+  );
+}
 
 const NavbarMobile = (props) => {
   const {
@@ -49,17 +65,7 @@ const NavbarMobile = (props) => {
           </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item>
-              <div className='ui right aligned category search item'>
-                <div className='ui transparent icon input'>
-                  <input
-                    className='prompt'
-                    type='text'
-                    placeholder='Search for games...'
-                  />
-                  <i className='search link icon' />
-                </div>
-                <div className='results' />
-              </div>
+              <Search />
             </Menu.Item>
             {rightItems.map((item) => (
               <Menu.Item {...item} />
@@ -85,17 +91,7 @@ const NavbarDesktop = (props) => {
       ))}
 
       <Menu.Menu position="right">
-        <div className='ui right aligned category search item'>
-          <div className='ui transparent icon input'>
-            <input
-              className='prompt'
-              type='text'
-              placeholder='Search for games...'
-            />
-            <i className='search link icon' />
-          </div>
-          <div className='results' />
-        </div>
+        <Search />
         {rightItems.map((item) => (
           <Menu.Item {...item} />
         ))}
