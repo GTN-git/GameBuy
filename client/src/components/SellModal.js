@@ -1,9 +1,12 @@
 import React from "react";
-import { Modal, Button, Image, Header } from "semantic-ui-react";
+import { Modal, Button, Image, Header, Form } from "semantic-ui-react";
+import SellForm from './SellForm';
 
-const SellModal = ({showModal, setShowModal, game}) => {
+const SellModal = ({ showModal, setShowModal, game }) => {
+    const { value } = "";
+
     return (
-        ( showModal && game.cover.url ?
+        (showModal && game.cover.url ?
             <Modal
                 onClose={() => setShowModal(false)}
                 onOpen={() => setShowModal(true)}
@@ -14,6 +17,7 @@ const SellModal = ({showModal, setShowModal, game}) => {
                     <Image size='medium' src={"https:" + game.cover.url} wrapped />
                     <Modal.Description>
                         <Header>{game.name}</Header>
+                        <SellForm />
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
