@@ -12,6 +12,7 @@ export const searchGames = query => {
             fields id,name,cover.url,category,status,rating,platforms,first_release_date;
             where category = (0,8,9);
             where rating != null;
+            where cover.url != null;
         `
     })
     .then(response => {
