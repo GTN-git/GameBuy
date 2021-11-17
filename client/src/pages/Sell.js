@@ -1,75 +1,76 @@
 import React, { Component } from 'react'
-import { Form, Search, Grid, Header, Segment } from 'semantic-ui-react'
-import _ from 'lodash'
+import { Button, Form, Card, Pagination } from 'semantic-ui-react'
 import { searchGames } from '../utils/API'
-// import faker from 'faker'
-
-
-const source = _.times(5, (query) => ({
-  title: "Hello",
-  description: "World",
-  image: "/img/something.jpg",
-  price: "200",
-}))
-
-const initialState = { isLoading: false, results: [], value: '' }
+import { useSelector, useDispatch } from 'react-redux';
+import { UPDATE_SEARCH_RESULTS } from '../utils/actions';
 
 class SearchBox extends Component {
-  state = initialState
+    componentWillUnmount() {
+        this.props.componentCleanup();
+        window.removeEventListener('beforeunload', this.props.componentCleanup());
+    }
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.title })
-
-  handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value })
-
-    setTimeout(() => {
-      if (this.state.value.length < 1) return this.setState(initialState)
-
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = (result) => re.test(result.title)
-
-      this.setState({
-        isLoading: false,
-        results: _.filter(source, isMatch),
-      })
-    }, 300)
-  }
-
-  render() {
-    const { isLoading, value, results } = this.state
-
-    return (
-        <Search
-            fluid
-            loading={isLoading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 1500, {
-                leading: true,
-            })}
-            results={results}
-            value={value}
-        />
-    )
-  }
+    render() {
+        return (
+            <>
+                <Form.Field>
+                    <label>Game Title</label>
+                    <input type="text" placeholder='Search for a game to sell...' name='game' required />
+                </Form.Field>
+                <Button type="submit" value="Submit">Search</Button>
+            </>
+        )
+    }
 }
 
-const Sell = () => (
-  <Form>
-    <SearchBox />
-    <Form.Input
-      error='Please enter a description.'
-      fluid
-      label='Description'
-      placeholder='This game is the best!'
-    />
-    <Form.Checkbox
-      label='I agree to the Terms and Conditions'
-      error={{
-        content: 'You must agree to the terms and conditions',
-        pointing: 'left',
-      }}
-    />
-  </Form>
-)
+const Sell = () => {
+    const [state, dispatch] = [useSelector(state => state), useDispatch()];
+    const { searchResults } = state;
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const results = await searchGames(event.target.game.value);
+
+        if (results.length) {
+            dispatch({
+                type: UPDATE_SEARCH_RESULTS,
+                searchResults: results
+            });
+        }
+    }
+
+    const componentCleanup = () => {
+        dispatch({
+            type: UPDATE_SEARCH_RESULTS,
+            searchResults: []
+        });
+    }
+
+    return (
+        <Form onSubmit={handleSubmit}>
+            <SearchBox componentCleanup={componentCleanup}/>
+            {searchResults.length > 0 ?
+                <div>
+                    <Pagination defaultActivePage={1} totalPages={searchResults.length / 10} />
+                    <Card.Group>
+                        {searchResults.map((game, i) => (
+                            <Card fluid key={i}>
+                                <h2>{game.name}</h2>
+                                <h4>{game.category}</h4>
+                                <img src={"https:" + game.cover.url} alt="" style={{ height: 125, width: 125 }} />
+                                <h4>{Math.round(game.rating)} / 100</h4>
+                            </Card>
+                        ))}
+                    </Card.Group>
+                </div>
+                :
+                <div>
+                    <h2>No search results...</h2>
+                </div>
+            }
+        </Form>
+    )
+}
 
 export default Sell

@@ -11,6 +11,8 @@ import Navbar from './components/Navbar';
 import Main from './pages/Main';
 import Login from './pages/Login';
 import Sell from './pages/Sell';
+import { Provider } from 'react-redux';
+import store from './utils/store';
 
 const client = new ApolloClient({
   request: operation => {
@@ -42,7 +44,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <>
+        <Provider store={store}>
           <style>{mediaStyles}</style>
           <MediaContextProvider>
             <Navbar Media={Media}> 
@@ -54,7 +56,7 @@ function App() {
               </Switch>
             </Navbar>
           </MediaContextProvider>
-        </>
+        </Provider>
       </Router>
     </ApolloProvider>
   );
