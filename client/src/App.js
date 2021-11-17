@@ -10,7 +10,7 @@ import ApolloClient from 'apollo-boost';
 import Navbar from './components/Navbar';
 import Main from './pages/Main';
 import Login from './pages/Login';
-
+import Sell from './pages/Sell';
 
 const client = new ApolloClient({
   request: operation => {
@@ -45,13 +45,14 @@ function App() {
         <>
           <style>{mediaStyles}</style>
           <MediaContextProvider>
-            <Navbar Media={Media}/>
-            <img src="https://react.semantic-ui.com/images/wireframe/paragraph.png" alt="Placeholder"/>
-            <Switch>
-              <Route exact path='/' component={Main} />
-              <Route exact path='/login' component={Login} />
-              <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
-            </Switch>
+            <Navbar Media={Media}> 
+              <Switch>
+                <Route exact path='/' component={Main} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/sell' component={Sell} />
+                <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+              </Switch>
+            </Navbar>
           </MediaContextProvider>
         </>
       </Router>

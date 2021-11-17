@@ -1,18 +1,25 @@
 import React, { Component } from "react";
-import { Icon, Image, Menu, Sidebar } from "semantic-ui-react";
+import { Container, Icon, Image, Menu, Sidebar } from "semantic-ui-react";
+import { Link } from 'react-router-dom';
 
 const leftItems = [
   {
-    as: "a", content: "Home", key: "home",
+    as: Link, name: "home", to:"/", content: "Home", key: "home",
     icon: {
       name: "home"
     }
   },
+  {
+    as: Link, name: "sell", to:"/sell", content: "Sell", key: "sell",
+    icon: {
+      name: "game"
+    }
+  }
 ];
 
 const rightItems = [
-  { as: "a", content: "Login", key: "login" },
-  { as: "a", content: "Register", key: "register" }
+  { as: Link, content: "Login", key: "login", to:"/login"},
+  { as: Link, content: "Register", key: "register", to:"/register" }
 ];
 
 const Search = () => {
@@ -33,6 +40,7 @@ const Search = () => {
 
 const NavbarMobile = (props) => {
   const {
+    children,
     leftItems,
     onPusherClick,
     onToggle,
@@ -72,10 +80,15 @@ const NavbarMobile = (props) => {
             ))}
           </Menu.Menu>
         </Menu>
+        {children}
       </Sidebar.Pusher>
     </Sidebar.Pushable>
   );
 };
+
+const NavbarChildren = (props) => (
+  <Container style={{ marginTop: "5em" }}>{props.children}</Container>
+);
 
 const NavbarDesktop = (props) => {
   const { leftItems, rightItems } = props;
@@ -87,7 +100,7 @@ const NavbarDesktop = (props) => {
       </Menu.Item>
 
       {leftItems.map((item) => (
-        <Menu.Item {...item} />
+          <Menu.Item {...item}/>
       ))}
 
       <Menu.Menu position="right">
@@ -113,9 +126,11 @@ class Navbar extends Component {
 
   handleToggle = () => this.setState({ visible: !this.state.visible });
 
+
   render() {
     const { visible } = this.state;
     const Media = this.props.Media;
+    const children = this.props.children;
 
     return (
       <div>
@@ -127,11 +142,13 @@ class Navbar extends Component {
             rightItems={rightItems}
             visible={visible}
           >
+            <NavbarChildren>{children}</NavbarChildren>
           </NavbarMobile>
         </Media>
 
         <Media greaterThan="mobile">
-          <NavbarDesktop leftItems={leftItems} rightItems={rightItems} />
+          <NavbarDesktop leftItems={leftItems} rightItems={rightItems}/>
+          <NavbarChildren>{children}</NavbarChildren>
         </Media>
       </div>
     );

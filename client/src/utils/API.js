@@ -6,7 +6,7 @@ export const searchGames = query => {
             return response.json();
         }
     }).then(data => {
-        //console.log(data);
+        console.log(data);
         return data;
     }).catch(err => {
         console.log(err);
