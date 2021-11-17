@@ -6,7 +6,6 @@ class SellForm extends Component {
 
     handleChange = (e, { value }) => {
         this.setState({ value });
-        console.log(value);
     }
 
 
@@ -14,7 +13,7 @@ class SellForm extends Component {
         const { value } = this.state
         return (
             <Form>
-                <Form.Group inline>
+                <Form.Group inline required>
                     <label>Condition:</label>
                     <Form.Radio
                         label='Poor'
@@ -42,13 +41,13 @@ class SellForm extends Component {
                     />
                 </Form.Group>
                 <Form.Group widths='equal'>
-                    <Input labelPosition='right' type='text' placeholder='Amount'>
+                    <Input labelPosition='right' type='text' placeholder='Amount' required>
                         <Label basic>$</Label>
                         <input />
                         <Label>.00</Label>
                     </Input>
                 </Form.Group>
-                <Form.Checkbox label='I agree to the Terms and Conditions' />
+                <Form.Checkbox label='I agree to the Terms and Conditions' required />
             </Form>
         )
     }
