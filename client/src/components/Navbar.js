@@ -14,6 +14,12 @@ const leftItems = [
     icon: {
       name: "game"
     }
+  },
+  {
+    as: Link, name: "buy", to:"/buy", content: "Buy", key: "buy",
+    icon: {
+      name: "search"
+    }
   }
 ];
 
@@ -72,9 +78,6 @@ const NavbarMobile = (props) => {
             <Icon name="sidebar" />
           </Menu.Item>
           <Menu.Menu position="right">
-            <Menu.Item>
-              <Search />
-            </Menu.Item>
             {rightItems.map((item) => (
               <Menu.Item {...item} />
             ))}
@@ -104,7 +107,6 @@ const NavbarDesktop = (props) => {
       ))}
 
       <Menu.Menu position="right">
-        <Search />
         {rightItems.map((item) => (
           <Menu.Item {...item} />
         ))}
