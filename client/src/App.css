@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+ 
+/* Set the grid */
+
+.wrapper {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-columns: .15fr .1fr .8fr .9fr .15fr .1fr;
+  grid-template-rows: .15fr .1fr .8fr .8fr .1fr .15fr;
+  grid-template-areas: 
+  "outerEdge outerEdge outerEdge outerEdge outerEdge outerEdge"
+  "outerEdge innerEdge innerEdge innerEdge innerEdge outerEdge"
+  "outerEdge innerEdge inside inside innerEdge outerEdge"
+  "outerEdge innerEdge inside inside innerEdge outerEdge"
+  "outerEdge innerEdge innerEdge innerEdge innerEdge outerEdge"
+  "outerEdge outerEdge outerEdge outerEdge outerEdge outerEdge";
+  grid-gap: .2rem;
+}
+/*  Grid Elements */
+#outerEdge{
+  grid-area: outerEdge;
+  background-color: purple;
+  text-align: center;
+}
+
+#innerEdge {
+  grid-area: innerEdge;
+  background-color: purple;
+}
+
+#inside {
+  grid-area: inside;
+  background: purple;
+}

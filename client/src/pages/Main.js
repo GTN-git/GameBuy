@@ -1,11 +1,21 @@
 import React from "react";
+import "../App.css"
 
 function Main() {
     return (
-        <>
-            <img src="https://react.semantic-ui.com/images/wireframe/paragraph.png" alt="Placeholder"/>
-            <p>Hello World!</p>
-        </>
+    <>
+        <main>
+            <div className="wrapper">
+                <div id="outerEdge">
+                    <div id="innerEdge">
+                        <div id="inside">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+      </>  
     )
 }
 

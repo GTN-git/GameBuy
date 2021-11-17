@@ -45,14 +45,14 @@ function App() {
         <>
           <style>{mediaStyles}</style>
           <MediaContextProvider>
-            <Navbar Media={Media}> 
+            {/* <Navbar Media={Media}>  */}
               <Switch>
                 <Route exact path='/' component={Main} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/sell' component={Sell} />
                 <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
               </Switch>
-            </Navbar>
+            {/* </Navbar> */}
           </MediaContextProvider>
         </>
       </Router>
