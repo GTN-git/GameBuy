@@ -1,5 +1,6 @@
 const { User, Game, Order } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -62,7 +63,7 @@ const resolvers = {
       return { token, user };
     },
 
-    addGame: async (parent, args) => {
+    addGame: async (parent, args, context) => {
       const user = await User.findByIdAndUpdate(
         context.user._id,
         { $push: { games: args.input } },
@@ -71,7 +72,7 @@ const resolvers = {
       return user;
     },
 
-    removeGame: async (parent, args) => {
+    removeGame: async (parent, args, context) => {
       const user = await Order.findByIdAndUpdate(
         context.user._id,
         { $pull: { games: { bookId: args.bookId } } },
@@ -80,7 +81,7 @@ const resolvers = {
       return user;
     },
 
-    addOrder: async (parent, { products }) => {
+    addOrder: async (parent, { products }, context) => {
       const order = new Order({ products });
 
       await User.findByIdAndUpdate(
@@ -91,7 +92,7 @@ const resolvers = {
       return order;
     },
 
-    removeOrder: async (parent, args) => {
+    removeOrder: async (parent, args, context) => {
       const user = await User.findByIdAndUpdate(
         context.user._id,
         { $pull: { games: { name: args.name } } },
