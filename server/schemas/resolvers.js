@@ -36,6 +36,70 @@ const resolvers = {
         .populate("games");
     },
   },
+
+  Mutation: {
+    addUser: async (parent, args) => {
+      const user = await User.create({ ...args });
+      const token = signToken(user);
+
+      return { token, user };
+    },
+
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
+
+    addGame: async (parent, args) => {
+      const user = await User.findByIdAndUpdate(
+        context.user._id,
+        { $push: { games: args.input } },
+        { new: true }
+      );
+      return user;
+    },
+
+    removeGame: async (parent, args) => {
+      const user = await Order.findByIdAndUpdate(
+        context.user._id,
+        { $pull: { games: { bookId: args.bookId } } },
+        { new: true }
+      );
+      return user;
+    },
+
+    addOrder: async (parent, { products }) => {
+      const order = new Order({ products });
+
+      await User.findByIdAndUpdate(
+        context.user._id,
+        { $push: { orders: order } },
+        { new: true });
+
+      return order;
+    },
+
+    removeOrder: async (parent, args) => {
+      const user = await User.findByIdAndUpdate(
+        context.user._id,
+        { $pull: { games: { name: args.name } } },
+        { new: true }
+      );
+      return user;
+    },
+  }
 };
 
 module.exports = resolvers;

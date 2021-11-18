@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const Game = require('./Game');
+const Order = require('./Order');
 
 const userSchema = new Schema({
   username: {
@@ -17,7 +18,9 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  games: [Game.schema]
+  games: [Game.schema],
+
+  orders: [Order.schema]
 });
 
 userSchema.pre('save', async function(next) {
