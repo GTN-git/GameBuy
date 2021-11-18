@@ -19,8 +19,6 @@ const SellCard = ({game, index, setSelectedGame, setShowModal}) => {
     const saveGame = event => {
         setSelectedGame(state.searchResults[event.target.value]);
         setShowModal(true);
-
-       // console.log(showModal, selectedGame);
     }
 
     return (

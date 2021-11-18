@@ -1,56 +1,54 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { Form, Input, Label } from 'semantic-ui-react'
 
-class SellForm extends Component {
-    state = {}
-
-    handleChange = (e, { value }) => {
-        this.setState({ value });
+const SellForm = ({game}) => {
+    const [state, setState] = useState({game: game, condition: 'poor', price: ''})
+    
+    const handleChange = (e, { value }) => {
+        // console.log(e.target === 'label');
+        setState({condition: value});
     }
 
-
-    render() {
-        const { value } = this.state
-        return (
-            <Form>
-                <Form.Group inline required>
-                    <label>Condition:</label>
-                    <Form.Radio
-                        label='Poor'
-                        value='pr'
-                        checked={value === 'pr'}
-                        onChange={this.handleChange}
-                    />
-                    <Form.Radio
-                        label='Fair'
-                        value='fr'
-                        checked={value === 'fr'}
-                        onChange={this.handleChange}
-                    />
-                    <Form.Radio
-                        label='Good'
-                        value='gd'
-                        checked={value === 'gd'}
-                        onChange={this.handleChange}
-                    />
-                    <Form.Radio
-                        label='Excellent'
-                        value='ex'
-                        checked={value === 'ex'}
-                        onChange={this.handleChange}
-                    />
-                </Form.Group>
-                <Form.Group widths='equal'>
-                    <Input labelPosition='right' type='text' placeholder='Amount' required>
-                        <Label basic>$</Label>
-                        <input />
-                        <Label>.00</Label>
-                    </Input>
-                </Form.Group>
-                <Form.Checkbox label='I agree to the Terms and Conditions' required />
-            </Form>
-        )
-    }
+    const value = state.condition;
+    return (
+        <Form id='sell-form'>
+            <Form.Group inline>
+                <label>Condition:</label>
+                <Form.Radio
+                    label='Poor'
+                    value='poor'
+                    checked={value === 'poor'}
+                    onChange={handleChange}
+                />
+                <Form.Radio
+                    label='Fair'
+                    value='fair'
+                    checked={value === 'fair'}
+                    onChange={handleChange}
+                />
+                <Form.Radio
+                    label='Good'
+                    value='good'
+                    checked={value === 'good'}
+                    onChange={handleChange}
+                />
+                <Form.Radio
+                    label='Excellent'
+                    value='excellent'
+                    checked={value === 'excellent'}
+                    onChange={handleChange}
+                />
+            </Form.Group>
+            <Form.Group widths='equal'>
+                <Input labelPosition='right' type='text' placeholder='Amount' required>
+                    <Label basic>$</Label>
+                    <input />
+                    <Label>.00</Label>
+                </Input>
+            </Form.Group>
+            <Form.Checkbox label='I agree to the Terms and Conditions' required />
+        </Form>
+    )
 }
 
 export default SellForm

@@ -11,14 +11,15 @@ const Sell = () => {
     const [state, dispatch] = [useSelector(state => state), useDispatch()];
     const [showModal, setShowModal] = useState(false);
     const [selectedGame, setSelectedGame] = useState({});
+    const [gameForSale, setGameForSale] = useState({});
     const { searchResults } = state;
 
-    const handleSubmit = async (event) => {
+    const handleSearch = async (event) => {
         event.preventDefault();
 
         const results = await searchGames(event.target.game.value);
 
-        if (results.length) {
+        if(results.length) {
             dispatch({
                 type: UPDATE_SEARCH_RESULTS,
                 searchResults: results
@@ -26,11 +27,15 @@ const Sell = () => {
         }
     }
 
+    const handleSubmit = () => {
+        console.log("SELLING!");
+    }
+
     return (
         <>
             <Grid columns='equal'>
                 <Grid.Row>
-                    <SearchBox onSubmit={handleSubmit} />
+                    <SearchBox onSubmit={handleSearch} />
                 </Grid.Row>
                 <Grid.Row>
                     <Grid>
@@ -59,7 +64,7 @@ const Sell = () => {
                     </Grid>
                 </Grid.Row>
             </Grid>
-            <SellModal showModal={showModal} setShowModal={setShowModal} game={selectedGame}/>
+            <SellModal showModal={showModal} setShowModal={setShowModal} game={selectedGame} onClick={handleSubmit} setSale={setGameForSale}/>
         </>
     )
 }
