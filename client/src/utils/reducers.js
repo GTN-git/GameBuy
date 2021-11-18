@@ -1,11 +1,13 @@
 // import { useReducer } from "react";
 import {
-    UPDATE_SEARCH_RESULTS
+    UPDATE_SEARCH_RESULTS,
+    UPDATE_SELL_POST
   } from "./actions";
   
   // Initial state required by reducer in Redux
   const initialState = {
-    searchResults: []
+    searchResults: [],
+    post: {}
   }
 
 export function reducers(state = initialState, action) {
@@ -14,6 +16,11 @@ export function reducers(state = initialState, action) {
             return {
                 ...state,
                 searchResults: [...action.searchResults]
+            };
+        case UPDATE_SELL_POST:
+            return {
+                ...state,
+                searchResults: [...action.post]
             };
         default: return state;
     }
