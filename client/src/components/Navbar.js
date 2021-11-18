@@ -14,6 +14,12 @@ const leftItems = [
     icon: {
       name: "game"
     }
+  },
+  {
+    as: Link, name: "buy", to:"/buy", content: "Buy", key: "buy",
+    icon: {
+      name: "search"
+    }
   }
 ];
 
@@ -22,21 +28,21 @@ const rightItems = [
   { as: Link, content: "Register", key: "register", to:"/register" }
 ];
 
-const Search = () => {
-  return (
-      <div className='ui right aligned category search item'>
-      <div className='ui transparent icon input'>
-        <input
-          className='prompt'
-          type='text'
-          placeholder='Search for games...'
-        />
-        <i className='search link icon' />
-      </div>
-      <div className='results' />
-    </div>
-  );
-}
+// const Search = () => {
+//   return (
+//       <div className='ui right aligned category search item'>
+//       <div className='ui transparent icon input'>
+//         <input
+//           className='prompt'
+//           type='text'
+//           placeholder='Search for games...'
+//         />
+//         <i className='search link icon' />
+//       </div>
+//       <div className='results' />
+//     </div>
+//   );
+// }
 
 const NavbarMobile = (props) => {
   const {
@@ -72,9 +78,6 @@ const NavbarMobile = (props) => {
             <Icon name="sidebar" />
           </Menu.Item>
           <Menu.Menu position="right">
-            <Menu.Item>
-              <Search />
-            </Menu.Item>
             {rightItems.map((item) => (
               <Menu.Item {...item} />
             ))}
@@ -87,7 +90,7 @@ const NavbarMobile = (props) => {
 };
 
 const NavbarChildren = (props) => (
-  <Container style={{ marginTop: "5em" }}>{props.children}</Container>
+  <Container style={{ paddingTop: "10em" }}>{props.children}</Container>
 );
 
 const NavbarDesktop = (props) => {
@@ -104,7 +107,6 @@ const NavbarDesktop = (props) => {
       ))}
 
       <Menu.Menu position="right">
-        <Search />
         {rightItems.map((item) => (
           <Menu.Item {...item} />
         ))}
