@@ -1,30 +1,26 @@
 {
-  "name": "gamer-ecommerce",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "watch": "nodemon server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GTN-git/GameBuy.git"
+    "watch": "nodemon",
+    "seed": "node config/seeds.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/GTN-git/GameBuy/issues"
-  },
-  "homepage": "https://github.com/GTN-git/GameBuy#readme",
   "dependencies": {
-    "apollo-server-express": "^3.5.0",
-    "bcrypt": "^5.0.1",
-    "dotenv": "^10.0.0",
+    "apollo-server-express": "^2.11.0",
+    "bcrypt": "^4.0.1",
     "express": "^4.17.1",
-    "graphql": "^15.7.2",
+    "graphql": "^15.5.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.13"
+    "mongoose": "^5.9.7",
+    "stripe": "^8.188.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

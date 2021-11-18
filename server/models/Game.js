@@ -1,4 +1,4 @@
-const { Schema }, mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const gameSchema = new Schema({
     name: {
@@ -37,6 +37,6 @@ const gameSchema = new Schema({
     }
 });
 
-const Game = mongoose.model('Game', gameSchema);
+const Game = model('Game', gameSchema);
 
 module.exports = Game;
