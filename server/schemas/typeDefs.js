@@ -17,11 +17,10 @@ type Game {
   rating: Int
   platform: String
   condition: String
-  user: [User]
 }
 
 input GameInput {
-  _id: ID
+  gameId: String
   name: String
   cover: String
   rating: Int
@@ -32,7 +31,7 @@ input GameInput {
 type Order {
   _id: ID
   orderDate: String
-  games: [Game]
+  orders: [Order]
 }
 
 type Auth{
@@ -52,7 +51,7 @@ type Mutation{
   addUser(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
   addGame(input: GameInput): User
-  removeGame(_id: ID): User
+  removeGame(gameId: String): User
   addOrder(_id: ID): Order
   removeOrder(_id: ID): Order
 }
