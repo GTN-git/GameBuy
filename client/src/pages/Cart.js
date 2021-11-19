@@ -1,7 +1,6 @@
 import React from 'react';
-import CartItem from '../CartItem';
-import Auth from '../../utils/auth';
-
+import CartItem from '../components/CartItem';
+import Auth from '../utils/auth';
 
 const Cart = () => {
   return (
@@ -25,7 +24,7 @@ const Cart = () => {
           </div>
         </div>
     </div>
-  );
-};
+  )
+}
 
 export default Cart;
