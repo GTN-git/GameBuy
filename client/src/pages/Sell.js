@@ -46,13 +46,13 @@ const Sell = () => {
         }
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         if (Auth.loggedIn()) {
             if (event.target.agree.checked) {
                 console.log(sellPost);
                 setErrorMessage('');
 
-                dispatch(
+                await dispatch(
                     {
                         type: UPDATE_SELL_PAGE,
                         page: 1
@@ -62,6 +62,8 @@ const Sell = () => {
                         searchResults: []
                     }
                 );
+
+                window.location = '/';
             } else {
                 setErrorMessage('You must agree to our terms.');
             }
