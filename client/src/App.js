@@ -14,7 +14,7 @@ import Sell from './pages/Sell';
 import Buy from './pages/Buy';
 import { Provider } from 'react-redux';
 import store from './utils/store';
-import Cart from './components/Cart';
+import Cart from './pages/Cart';
 
 const client = new ApolloClient({
   request: operation => {
