@@ -14,14 +14,5 @@ export const searchGames = query => {
             where rating != null;
             where cover.url != null;
         `
-    })
-    .then(response => {
-        if(response.ok) {
-            return response.json();
-        }
-    }).then(data => {
-        return data;
-    }).catch(err => {
-        console.log(err);
     });
 }
