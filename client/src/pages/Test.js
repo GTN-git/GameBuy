@@ -5,8 +5,8 @@ import { LOGIN_USER, ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const Test = () => {
-    const [login, { error }] = useMutation(LOGIN_USER);
-    const [register, { err }] = useMutation(ADD_USER);
+    const [login] = useMutation(LOGIN_USER);
+    const [register] = useMutation(ADD_USER);
 
     const loginFxn = async () => {
         console.log('click');

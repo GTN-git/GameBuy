@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Form, Input, Label, Message } from 'semantic-ui-react'
 
 const SellForm = ({game, onSubmit, sellPost, setSellPost, errorMessage}) => {    
