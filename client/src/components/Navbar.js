@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Icon, Image, Menu, Sidebar } from "semantic-ui-react";
 import { Link } from 'react-router-dom';
 
+
 const leftItems = [
   {
     as: Link, name: "home", to:"/", content: "Home", key: "home",
@@ -24,8 +25,13 @@ const leftItems = [
 ];
 
 const rightItems = [
+  { as: Link, content: "Cart", key: "Cart", to:"/cart",
+  // icon: {
+  //   name: "cart"
+  //   }
+  },
   { as: Link, content: "Login", key: "login", to:"/login"},
-  { as: Link, content: "Register", key: "register", to:"/register" }
+  { as: Link, content: "Register", key: "register", to:"/register" },
 ];
 
 // const Search = () => {
