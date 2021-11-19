@@ -9,7 +9,7 @@ const SellModal = ({ showModal, setShowModal, game, onSubmit, sellPost, setSellP
                 onClose={() => setShowModal(false)}
                 onOpen={() => setShowModal(true)}
                 closeOnDimmerClick={false}
-                // dimmer='blurring'
+                dimmer='blurring'
                 open={showModal}
             >
                 <Modal.Header>List a Game for Sale</Modal.Header>
