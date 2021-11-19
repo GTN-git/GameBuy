@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Card, Pagination, Grid, Loader } from 'semantic-ui-react'
+import { Card, Pagination, Grid, Loader, Dimmer, Divider } from 'semantic-ui-react'
 import { searchGames } from '../utils/API'
 import { useSelector, useDispatch } from 'react-redux';
-import { UPDATE_SEARCH_RESULTS } from '../utils/actions';
+import { UPDATE_SEARCH_RESULTS, UPDATE_SELL_PAGE } from '../utils/actions';
 import SellCard from '../components/SellCard';
 import SearchBox from '../components/SearchBox';
 import SellModal from '../components/SellModal';
@@ -17,7 +17,7 @@ const Sell = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const { searchResults } = state;
     const [loading, setLoading] = useState(false);
-    const [page, setPage] = useState({ curr: 1, start: 0, end: 10 });
+    const [page, setPage] = useState({ curr: state.page, start: (state.page - 1) * 10, end: state.page * 10 });
 
     const handleSearch = async (event) => {
         event.preventDefault();
@@ -28,8 +28,12 @@ const Sell = () => {
                         if(response.ok) {
                             setLoading(false);
                             setPage({ curr: 1, start: 0, end: 10 });
+                            handlePageChange({}, { activePage: 1 });
                             return response.json();
                         }
+                    }).then(data => {
+                        data = data.filter(game => game.rating > 0);
+                        return data;
                     }).catch(err => {
                         console.log(err);
                     });
@@ -47,6 +51,17 @@ const Sell = () => {
             if (event.target.agree.checked) {
                 console.log(sellPost);
                 setErrorMessage('');
+
+                dispatch(
+                    {
+                        type: UPDATE_SELL_PAGE,
+                        page: 1
+                    },
+                    {
+                        type: UPDATE_SEARCH_RESULTS,
+                        searchResults: []
+                    }
+                );
             } else {
                 setErrorMessage('You must agree to our terms.');
             }
@@ -56,12 +71,14 @@ const Sell = () => {
     }
 
     const handlePageChange = (event, { activePage }) => {
-        console.log(activePage, 'start: ', (activePage - 1) * 10, 'end:', activePage * 10 - 1);
         setPage({ curr: activePage, start: (activePage - 1) * 10, end: activePage * 10 })
+        dispatch({
+            type: UPDATE_SELL_PAGE,
+            page: activePage
+        })
     }
 
     const calcIndex = (index) => {
-        console.log("map index:", index, "array index: ", (index) + ((page.curr - 1) * 10));
         return (index + ((page.curr - 1) * 10));
     }
 
@@ -73,17 +90,23 @@ const Sell = () => {
                 </Grid.Row>
                 <Grid.Row>
                     <Grid>
-                        { loading ?
-                            <Grid.Row>
-                                <Loader active inline centered />
-                            </Grid.Row>
-                            :
-                            ( searchResults.length > 0 ?
-                                <div>
-                                    {searchResults.length > 10 &&
-                                        <Grid.Row>
-                                            <Pagination defaultActivePage={1} totalPages={Math.ceil(searchResults.length / 10)} onPageChange={handlePageChange}/>
-                                        </Grid.Row>
+                        <div>
+                            <Dimmer active={loading} inverted size='massive'>
+                                <Loader inverted>Loading...</Loader>
+                            </Dimmer>
+                            { searchResults.length > 0 || loading ?
+                                <div className='ui center aligned segment'>
+                                    { searchResults.length > 10 &&
+                                        <>
+                                            <Grid.Row>
+                                                <Pagination
+                                                    defaultActivePage={page.curr !== 1 && page.curr}
+                                                    totalPages={Math.ceil(searchResults.length / 10)}
+                                                    onPageChange={handlePageChange}
+                                                />
+                                            </Grid.Row>
+                                            <Divider />
+                                        </>
                                     }
                                     <Grid.Row>
                                         <Card.Group itemsPerRow={2}>
@@ -100,13 +123,11 @@ const Sell = () => {
                                     </Grid.Row>
                                 </div>
                             :
-                                <div>
-                                    <Grid.Row>
-                                        <h2><span role="img" aria-label="chicken">🐔</span> Nothing here but us chickens...</h2>
-                                    </Grid.Row>
-                                </div>
-                            )
-                        }
+                                <Grid.Row>
+                                    <h2><span role="img" aria-label="chicken">🐔</span> Nothing here but us chickens...</h2>
+                                </Grid.Row>                         
+                            }       
+                        </div>
                     </Grid>
                 </Grid.Row>
             </Grid>
