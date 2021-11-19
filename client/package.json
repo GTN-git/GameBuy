@@ -13,6 +13,7 @@
     "apollo-boost": "^0.4.9",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.12.6",
+    "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
