@@ -24,6 +24,11 @@ const leftItems = [
 ];
 
 const rightItems = [
+  { as: Link, name: "cart", to:"/cart", content:"Cart", key: "cart",
+    icon: {
+      name: "cart"
+    }
+  },
   { as: Link, content: "Login", key: "login", to:"/login"},
   { as: Link, content: "Register", key: "register", to:"/register" }
 ];

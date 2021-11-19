@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
-import { Form, Input, Label } from 'semantic-ui-react'
+import { Form, Input, Label, Message } from 'semantic-ui-react'
 
-const SellForm = ({game}) => {
-    const [state, setState] = useState({game: game, condition: 'poor', price: ''})
-    
+const SellForm = ({game, onSubmit, sellPost, setSellPost, errorMessage}) => {    
     const handleChange = (e, { value }) => {
-        // console.log(e.target === 'label');
-        setState({condition: value});
+        if(e.target.name === 'price') {
+            setSellPost( { ...sellPost, price: e.target.value, game: game });
+        } else {
+            setSellPost({ ...sellPost, condition: value, game: game });
+        }
     }
 
-    const value = state.condition;
+    const value = sellPost.condition;
     return (
-        <Form id='sell-form'>
-            <Form.Group inline>
+        <Form id='sell-form' onSubmit={onSubmit}>
+            <Form.Group inline required>
                 <label>Condition:</label>
                 <Form.Radio
                     label='Poor'
@@ -40,13 +41,18 @@ const SellForm = ({game}) => {
                 />
             </Form.Group>
             <Form.Group widths='equal'>
-                <Input labelPosition='right' type='text' placeholder='Amount' required>
+                <Input labelPosition='right' type='text' placeholder='Amount'>
                     <Label basic>$</Label>
-                    <input />
+                    <Input name='price' type='number' onChange={handleChange} required/>
                     <Label>.00</Label>
                 </Input>
             </Form.Group>
-            <Form.Checkbox label='I agree to the Terms and Conditions' required />
+            <Form.Checkbox name='agree' label='I agree to the Terms and Conditions' required/>
+            { errorMessage.length > 0 &&
+                <Message negative>
+                    <Message.Header>{errorMessage}</Message.Header>
+                </Message>
+            }
         </Form>
     )
 }
