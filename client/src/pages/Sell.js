@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Pagination, Grid, Loader, Dimmer, Divider } from 'semantic-ui-react'
+import { Card, Pagination, Grid, Loader, Dimmer, Divider, Container } from 'semantic-ui-react'
 import { searchGames } from '../utils/API'
 import { useSelector, useDispatch } from 'react-redux';
 import { UPDATE_SEARCH_RESULTS, UPDATE_SELL_PAGE } from '../utils/actions';
@@ -24,19 +24,19 @@ const Sell = () => {
 
         setLoading(true);
         const results = await searchGames(event.target.game.value)
-                    .then(response => {
-                        if(response.ok) {
-                            setLoading(false);
-                            setPage({ curr: 1, start: 0, end: 10 });
-                            handlePageChange({}, { activePage: 1 });
-                            return response.json();
-                        }
-                    }).then(data => {
-                        data = data.filter(game => game.rating > 0);
-                        return data;
-                    }).catch(err => {
-                        console.log(err);
-                    });
+            .then(response => {
+                if (response.ok) {
+                    setLoading(false);
+                    setPage({ curr: 1, start: 0, end: 10 });
+                    handlePageChange({}, { activePage: 1 });
+                    return response.json();
+                }
+            }).then(data => {
+                data = data.filter(game => game.rating > 0);
+                return data;
+            }).catch(err => {
+                console.log(err);
+            });
 
         if (results.length) {
             dispatch({
@@ -47,7 +47,7 @@ const Sell = () => {
     }
 
     const handleSubmit = (event) => {
-        if(Auth.loggedIn()) {
+        if (Auth.loggedIn()) {
             if (event.target.agree.checked) {
                 console.log(sellPost);
                 setErrorMessage('');
@@ -83,10 +83,12 @@ const Sell = () => {
     }
 
     return (
-        <>
+        <Container>
             <Grid columns='equal'>
                 <Grid.Row>
-                    <SearchBox onSubmit={handleSearch} />
+                    <Container>
+                        <SearchBox onSubmit={handleSearch} />
+                    </Container>
                 </Grid.Row>
                 <Grid.Row>
                     <Grid>
@@ -94,9 +96,9 @@ const Sell = () => {
                             <Dimmer active={loading} inverted size='massive'>
                                 <Loader inverted>Loading...</Loader>
                             </Dimmer>
-                            { searchResults.length > 0 || loading ?
-                                <div className='ui center aligned segment'>
-                                    { searchResults.length > 10 &&
+                            {searchResults.length > 0 || loading ?
+                                <div className='ui center aligned container'>
+                                    {searchResults.length > 10 &&
                                         <>
                                             <Grid.Row>
                                                 <Pagination
@@ -122,13 +124,14 @@ const Sell = () => {
                                         </Card.Group>
                                     </Grid.Row>
                                 </div>
-                            :
+                                :
                                 <Grid.Row>
                                     <h2><span role="img" aria-label="chicken">🐔</span> Nothing here but us chickens...</h2>
-                                </Grid.Row>                         
-                            }       
+                                </Grid.Row>
+                            }
                         </div>
                     </Grid>
+                    <Divider />
                 </Grid.Row>
             </Grid>
             <SellModal
@@ -140,7 +143,7 @@ const Sell = () => {
                 setSellPost={setSellPost}
                 errorMessage={errorMessage}
             />
-        </>
+        </Container>
     )
 }
 
