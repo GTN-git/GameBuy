@@ -1,6 +1,6 @@
 // see SignupForm.js for comments
 import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button } from "semantic-ui-react";
 
 // import { loginUser } from '../utils/API';
 import { LOGIN_USER } from '../utils/mutations';
@@ -52,6 +52,7 @@ const LoginForm = () => {
           Something went wrong with your login credentials!
         </Alert>
         <Form.Group>
+          <Form.Field>
           <Form.Label htmlFor='email'>Email</Form.Label>
           <Form.Control
             type='text'
@@ -62,6 +63,7 @@ const LoginForm = () => {
             required
           />
           <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
+          </Form.Field>
         </Form.Group>
 
         <Form.Group>

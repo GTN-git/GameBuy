@@ -57,14 +57,13 @@ export const REMOVE_GAME= gql`
 `;
 
 export const ADD_ORDER= gql `
-mutation addOrder(_id: ID) {
+mutation addOrder($_id: ID) {
   addOrder(_id: $ID) {
     _id
     orderDate
     orders
     }
   }
-}
 `
 
 export const REMOVE_ORDER= gql `
