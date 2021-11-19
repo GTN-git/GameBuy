@@ -11,6 +11,7 @@ window.env = {
   "npm_config_also": "",
   "npm_config_sign_git_commit": "",
   "npm_config_rollback": "true",
+  "npm_package_proxy": "http://localhost:3001/",
   "TERM_PROGRAM": "vscode",
   "npm_config_usage": "",
   "npm_config_audit": "true",
