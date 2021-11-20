@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Icon, Image, Menu, Sidebar } from "semantic-ui-react";
 import { Link } from 'react-router-dom';
+import Auth from '../utils/auth';
 
 
 const leftItems = [
@@ -25,30 +26,21 @@ const leftItems = [
 ];
 
 const rightItems = [
-  { as: Link, content: "Cart", key: "Cart", to:"/cart",
-  // icon: {
-  //   name: "cart"
-  //   }
-  },
-  { as: Link, content: "Login", key: "login", to:"/login"},
-  { as: Link, content: "Register", key: "register", to:"/register" },
+  { as: Link, name: "cart", to:"/cart", content:"Cart", key: "cart",
+    icon: {
+      name: "cart"
+    }
+  }
 ];
 
-// const Search = () => {
-//   return (
-//       <div className='ui right aligned category search item'>
-//       <div className='ui transparent icon input'>
-//         <input
-//           className='prompt'
-//           type='text'
-//           placeholder='Search for games...'
-//         />
-//         <i className='search link icon' />
-//       </div>
-//       <div className='results' />
-//     </div>
-//   );
-// }
+console.log("loggedin: ", Auth.loggedIn());
+
+if(!Auth.loggedIn()) {
+  rightItems.push({ as: Link, content: "Login", key: "login", to:"/login"},
+                  { as: Link, content: "Register", key: "register", to:"/register" });
+} else {
+  rightItems.push({as: Link, content: "Logout", key: "logout", onClick: Auth.logout });
+}
 
 const NavbarMobile = (props) => {
   const {

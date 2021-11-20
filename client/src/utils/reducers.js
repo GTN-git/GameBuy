@@ -9,13 +9,21 @@ import {
     UPDATE_CATEGORIES,
     UPDATE_CURRENT_CATEGORY,
     CLEAR_CART,
-    TOGGLE_CART
+    TOGGLE_CART,
+    UPDATE_SELL_PAGE
   } from "./actions";
   
   // Initial state required by reducer in Redux
 //   const initialState = {
 //     searchResults: []
 //   }
+
+  
+  // Initial state required by reducer in Redux
+  const initialState = {
+    searchResults: [],
+    page: 1
+  }
 
   export const reducer = (state, action) => {
     switch(action.type) {
@@ -91,6 +99,11 @@ import {
                   ...state,
                   currentCategory: action.currentCategory
                 }
+        case UPDATE_SELL_PAGE:
+            return {
+                ...state,
+                page: action.page
+            };
         default: return state;
     }
 }

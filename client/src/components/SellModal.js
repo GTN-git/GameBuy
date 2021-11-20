@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Button, Image, Header } from "semantic-ui-react";
 import SellForm from './SellForm';
 
-const SellModal = ({ showModal, setShowModal, game, onClick, setSale }) => {
+const SellModal = ({ showModal, setShowModal, game, onSubmit, sellPost, setSellPost, errorMessage }) => {
     return (
         (showModal && game.cover.url ?
             <Modal
@@ -17,20 +17,17 @@ const SellModal = ({ showModal, setShowModal, game, onClick, setSale }) => {
                     <Image size='medium' src={"https:" + game.cover.url} wrapped />
                     <Modal.Description>
                         <Header>{game.name}</Header>
-                        <SellForm game={game} onClick={onClick} setSale={setSale}/>
+                        <SellForm onSubmit={onSubmit} game={game} sellPost={sellPost} setSellPost={setSellPost} errorMessage={errorMessage}/>
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
                     <Button color='black' onClick={() => setShowModal(false)}>
                         Nope
                     </Button>
-                    <Button
+                    <input
                         form='sell-form'
-                        content="Yep, let's do it!"
-                        labelPosition='right'
-                        icon='checkmark'
-                        onClick={() => onClick()}
-                        positive
+                        type='submit'
+                        className="ui button positive"
                     />
                 </Modal.Actions>
             </Modal>

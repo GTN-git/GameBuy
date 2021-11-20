@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import CartItem from "./CartItem";
 import Auth from "../utils/auth";
 import { useStoreContext } from "../utils/GlobalState";
-import { useSelector, useDispatch } from 'react-redux';
 import {  ADD_MULTIPLE_TO_CART } from "../utils/actions";
 import { idbPromise } from "../utils/helpers";
 // import "./style.css";
@@ -14,7 +13,12 @@ const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const Cart = () => {
   const [state, dispatch] = useStoreContext();
+  console.log(state);
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
+
+  // function toggleCart() {
+  //   dispatch({ type: TOGGLE_CART });
+  // }
 
   useEffect(() => {
     if (data) {
@@ -29,7 +33,21 @@ const Cart = () => {
       const cart = await idbPromise("cart", "get");
       dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
     }
-  });
+
+    if (!state.cart.length) {
+      getCart();
+    }
+  }, [state.cart.length, dispatch]);
+
+  // if (!state.cartOpen) {
+  //   return (
+  //     <div className="cart-closed" onClick={toggleCart}>
+  //       <span role="img" aria-label="trash">
+  //         🛒
+  //       </span>
+  //     </div>
+  //   );
+  // }
 
   function calculateTotal() {
     let sum = 0;
