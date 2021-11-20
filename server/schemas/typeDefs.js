@@ -17,6 +17,7 @@ type Game {
   rating: Int
   platform: String
   condition: String
+  price: String
 }
 
 input GameInput {

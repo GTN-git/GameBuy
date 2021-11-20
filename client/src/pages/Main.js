@@ -1,10 +1,14 @@
 import React from "react";
+import { useQuery } from '@apollo/client';
+
+const [loading, data] = useQuery()
+
+console.log(data);
 
 function Main() {
     return (
         <>
-            <img src="https://react.semantic-ui.com/images/wireframe/paragraph.png" alt="Placeholder"/>
-            <p>Hello World!</p>
+            
         </>
     )
 }
