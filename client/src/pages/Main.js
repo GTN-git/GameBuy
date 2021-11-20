@@ -1,11 +1,12 @@
 import React from "react";
 import { useQuery } from '@apollo/client';
+import { graphql } from 'graphql-tag';
 
-const [loading, data] = useQuery()
 
-console.log(data);
+
 
 function Main() {
+    const [loading, data] = useQuery()
     return (
         <>
             
