@@ -6,7 +6,7 @@ window.env = {
   "BESIEGE_UNITY_ASSEMBLIES": "Z:/gaemz/stam/steamapps/common/Besiege/Besiege_Data\\Managed/",
   "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
   "ChocolateyLastPathUpdate": "132584385477998828",
-  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_28608_AHODKOZZZMJLGWOC",
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_15952_JUJPUFCKDDPQAKTD",
   "COLOR": "0",
   "COLORTERM": "truecolor",
   "CommonProgramFiles": "C:\\Program Files\\Common Files",

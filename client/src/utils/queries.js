@@ -1,19 +1,17 @@
+import gql from 'graphql-tag';
+
 export const ALL_USERS = gql`
     {
         users{
-            users{
-                _id
-                username
-                email
-                games{
-                  name
-                  cover
-                  rating
-                  condition
-                  platform
-                  price
-                }
+            username
+            games{
+              name
+              cover
+              rating
+              condition
+              platform
+              price
             }
-        }
+          }
     }
 `;
