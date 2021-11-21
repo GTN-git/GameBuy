@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Card, Pagination, Grid, Loader, Dimmer, Divider, Container } from 'semantic-ui-react'
 import { searchGames } from '../utils/API'
 import { useSelector, useDispatch } from 'react-redux';
+import { useMutation } from '@apollo/client';
 import { UPDATE_SEARCH_RESULTS, UPDATE_SELL_PAGE } from '../utils/actions';
 import SellCard from '../components/SellCard';
 import SearchBox from '../components/SearchBox';
@@ -18,6 +19,7 @@ const Sell = () => {
     const { searchResults } = state;
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState({ curr: state.page, start: (state.page - 1) * 10, end: state.page * 10 });
+    const [ addGame, { error }] = useMutation(ADD_GAME);
 
     const handleSearch = async (event) => {
         event.preventDefault();
@@ -49,8 +51,9 @@ const Sell = () => {
     const handleSubmit = async (event) => {
         if (Auth.loggedIn()) {
             if (event.target.agree.checked) {
-                console.log(sellPost);
-                setErrorMessage('');
+                console.log(sellPost, Auth.getProfile());
+                const response = await addGame({ variables: { ...sellPost.game, cover: sellPost.game.cover.url, price: sellPost.price, condition: sellPost.condition, seller: Auth.getProfile().data.username }});
+                console.log(response);
 
                 await dispatch(
                     {

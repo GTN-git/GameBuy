@@ -16,10 +16,10 @@ const gameSchema = new Schema({
         required: true
     },
 
-    platform: {
-        type: String,
-        required: true
-    },
+    // platform: {
+    //     type: String,
+    //     required: true
+    // },
 
     condition: {
         type: String,
@@ -31,9 +31,9 @@ const gameSchema = new Schema({
         required: true
     },
 
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+    seller: {
+        type: String,
+        required: true
     }
 });
 
