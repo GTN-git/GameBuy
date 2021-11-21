@@ -26,9 +26,11 @@ const resolvers = {
     },
 
     users: async () => {
-      return User.find()
+      const users = await User.find()
         .select("-__v -password")
         .populate("games");
+      
+      return users;
     },
     // get a user by username
     user: async (parent, { username }) => {
@@ -63,19 +65,23 @@ const resolvers = {
       return { token, user };
     },
 
-    addGame: async (parent, args) => {
+    addGame: async (parent, args, context) => {
+      console.log(args);
+
       const user = await User.findByIdAndUpdate(
         context.user._id,
-        { $push: { games: args.input } },
+        { $push: { games: args }},
         { new: true }
       );
+
+      console.log(user);
       return user;
     },
 
     removeGame: async (parent, args) => {
       const user = await Order.findByIdAndUpdate(
         context.user._id,
-        { $pull: { games: { bookId: args.bookId } } },
+        { $pull: { games: { bookId: args.gameId } } },
         { new: true }
       );
       return user;
