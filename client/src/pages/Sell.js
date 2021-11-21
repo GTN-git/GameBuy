@@ -87,11 +87,13 @@ const Sell = () => {
     return (
         <Container>
             <Grid columns='equal'>
-                <Grid.Row>
-                    <Container>
-                        <SearchBox onSubmit={handleSearch} />
-                    </Container>
-                </Grid.Row>
+                <Grid.Column>
+                    <Grid.Row>
+                        <Container fluid>
+                            <SearchBox onSubmit={handleSearch} />
+                        </Container>
+                    </Grid.Row>
+                </Grid.Column>
                 <Grid.Row>
                     <Grid>
                         <div>

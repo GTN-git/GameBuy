@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+//import { useReducer } from "react";
 import {
     UPDATE_SEARCH_RESULTS,
     UPDATE_PRODUCTS,
@@ -14,18 +14,13 @@ import {
   } from "./actions";
   
   // Initial state required by reducer in Redux
-//   const initialState = {
-//     searchResults: []
-//   }
-
-  
-  // Initial state required by reducer in Redux
   const initialState = {
     searchResults: [],
-    page: 1
+    page: 1,
+    cart: []
   }
 
-  export const reducer = (state, action) => {
+  export const reducer = (state = initialState, action) => {
     switch(action.type) {
         case UPDATE_SEARCH_RESULTS:
             return {
@@ -107,7 +102,3 @@ import {
         default: return state;
     }
 }
-
-export function useProductReducer(initialState) {
-    return useReducer(reducer, initialState)
-  }

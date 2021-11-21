@@ -16,7 +16,7 @@ import Cart from './pages/Cart';
 import { Provider } from 'react-redux';
 import store from './utils/store';
 import signUp from './pages/Signup';
-import { StoreProvider } from "../src/utils/GlobalState";
+//import { StoreProvider } from "../src/utils/GlobalState";
 
 import Test from './pages/Test';
 
@@ -49,7 +49,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <StoreProvider>
+        <Provider store={store}>
           <style>{mediaStyles}</style>
           <MediaContextProvider>
             <Navbar Media={Media}> 
@@ -65,7 +65,7 @@ function App() {
               </Switch>
             </Navbar>
           </MediaContextProvider>
-        </StoreProvider>
+        </Provider>
       </Router>
     </ApolloProvider>
   );
