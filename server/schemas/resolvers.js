@@ -28,7 +28,9 @@ const resolvers = {
     users: async () => {
       const users = await User.find()
         .select("-__v -password")
-        .populate("games");
+        .populate({
+          path: "games"
+        });
       
       return users;
     },
@@ -66,16 +68,16 @@ const resolvers = {
     },
 
     addGame: async (parent, args, context) => {
-      console.log(args);
-
-      const user = await User.findByIdAndUpdate(
-        context.user._id,
-        { $push: { games: args }},
-        { new: true }
-      );
-
-      console.log(user);
-      return user;
+      const game = await Game.create({ ...args })
+        .then(dbGameData => {
+          const user = User.findByIdAndUpdate(
+            context.user._id,
+            { $push: { games: dbGameData._id }},
+            { new: true }
+          );
+          console.log(user);
+          return user;
+        });
     },
 
     removeGame: async (parent, args) => {

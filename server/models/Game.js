@@ -31,10 +31,10 @@ const gameSchema = new Schema({
         required: true
     },
 
-    // user: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User'
-    // }
+    seller: {
+        type: String,
+        required: true
+    }
 });
 
 const Game = model('Game', gameSchema);

@@ -25,8 +25,8 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_GAME = gql`
-  mutation addGame($name: String!, $cover: String!, $rating: Float!, $condition: String!, $price: Int!) {
-    addGame(name: $name, cover: $cover, rating: $rating, condition: $condition, price: $price) {
+  mutation addGame($name: String!, $cover: String!, $rating: Float!, $condition: String!, $price: Int!, $seller: String!) {
+    addGame(name: $name, cover: $cover, rating: $rating, condition: $condition, price: $price, seller: $seller) {
       _id
       username
       email

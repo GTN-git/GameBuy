@@ -51,8 +51,8 @@ const Sell = () => {
     const handleSubmit = async (event) => {
         if (Auth.loggedIn()) {
             if (event.target.agree.checked) {
-                console.log(sellPost);
-                const response = await addGame({ variables: { ...sellPost.game, cover: sellPost.game.cover.url, price: sellPost.price, condition: sellPost.condition /*, user: { ...Auth.getProfile() }*/}});
+                console.log(sellPost, Auth.getProfile());
+                const response = await addGame({ variables: { ...sellPost.game, cover: sellPost.game.cover.url, price: sellPost.price, condition: sellPost.condition, seller: Auth.getProfile().data.username }});
                 console.log(response);
 
                 await dispatch(

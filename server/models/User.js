@@ -7,6 +7,7 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
+      unique: true,
       required: true,
       trim: true
     },
@@ -21,14 +22,22 @@ const userSchema = new Schema(
       minlength: 5
     },
 
-    games: [Game.schema],
+    games: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Game'
+    }],
 
-    orders: [Order.schema]
+    orders: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Order'
+    }]
   },
   {
     toJSON: {
       virtuals: true,
+      getters: true
     },
+    id: true
   }
 );
 

@@ -19,6 +19,7 @@ type Game {
   platform: String
   condition: String
   price: Int
+  seller: String
 }
 
 input GameInput {
@@ -52,7 +53,7 @@ type Query {
 type Mutation{
   addUser(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
-  addGame(name: String!, cover: String!, rating: Float!, condition: String!, price: Int!): User
+  addGame(name: String!, cover: String!, rating: Float!, condition: String!, price: Int!, seller: String!): User
   removeGame(gameId: String): User
   addOrder(_id: ID): Order
   removeOrder(_id: ID): Order
