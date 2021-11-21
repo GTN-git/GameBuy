@@ -16,6 +16,7 @@ import Cart from './pages/Cart';
 import { Provider } from 'react-redux';
 import store from './utils/store';
 import signUp from './pages/Signup';
+//import { StoreProvider } from "../src/utils/GlobalState";
 
 import Test from './pages/Test';
 
