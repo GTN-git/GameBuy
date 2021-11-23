@@ -68,14 +68,6 @@ const resolvers = {
     },
 
     addGame: async (parent, args, context) => {
-<<<<<<< HEAD
-      const user = await User.findByIdAndUpdate(
-        context.user._id,
-        { $push: { games: args.input } },
-        { new: true }
-      );
-      return user;
-=======
       const game = await Game.create({ ...args })
         .then(dbGameData => {
           const user = User.findByIdAndUpdate(
@@ -86,7 +78,6 @@ const resolvers = {
           console.log(user);
           return user;
         });
->>>>>>> 2baf0b02cb39b32c42d20b122e26cab6a164eb50
     },
 
     removeGame: async (parent, args, context) => {

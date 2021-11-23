@@ -18,12 +18,8 @@ type Game {
   rating: Float
   platform: String
   condition: String
-<<<<<<< HEAD
-  price: String
-=======
   price: Int
   seller: String
->>>>>>> 2baf0b02cb39b32c42d20b122e26cab6a164eb50
 }
 
 input GameInput {

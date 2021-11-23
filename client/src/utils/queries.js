@@ -15,3 +15,18 @@ export const ALL_USERS = gql`
           }
     }
 `;
+
+export const ALL_GAMES = gql`
+{
+  games {
+    _id
+    name
+    cover
+    release_date
+    rating
+    condition
+    price
+    seller
+  }
+}
+`
