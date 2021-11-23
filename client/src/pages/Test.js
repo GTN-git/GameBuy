@@ -37,7 +37,7 @@ const Test = () => {
     return (
         <>
             <Button onClick={loginFxn}>Login button</Button>
-            {/* <Button onClick={signupFxn}>Signup button</Button> */}
+            <Button onClick={signupFxn}>Signup button</Button>
         </>
     )
 }

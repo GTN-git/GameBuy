@@ -1,33 +1,43 @@
-import React from "react";
-import { useQuery } from '@apollo/client';
-// import { ALL_USERS } from '../utils/queries';
-import { ALL_GAMES } from "../utils/queries";
-// import { getDataFromTree } from "@apollo/client/react/ssr";
+import React, { useState } from "react";
 import { Container, Grid, Card, Dimmer, Loader } from 'semantic-ui-react';
+import { useQuery } from '@apollo/client';
+
+import { ALL_GAMES } from '../utils/queries';
+import BuyCard from '../components/BuyCard'
+
 
 function Main() {
-    const { loading, data } = useQuery(ALL_GAMES);
-    // const {loading, data} =useQuery()
-    let games;
+    const [ games, setGames ] = useState([]);
 
-    if (data) {
-        console.log(data)
-        games = data;
-    }
+    const { loading } = useQuery(ALL_GAMES, {
+        onCompleted: data => {
+            setGames(data?.games);
+        }
+    });
 
     return (
         <>
-            {loading ?
-                <div>
-                    <Dimmer active={loading} inverted size='massive'>
-                        <Loader inverted>Loading...</Loader>
-                    </Dimmer>
-                </div> : (
-                    <div>
+            {!loading ? (
+                <Grid>
+                    <Grid.Row align centered>
+                        <Container>
 
-                    </div>
-                )}
-
+                            <Card.Group itemsPerRow={2}>
+                            { games.map((game, index) => (
+                                <>
+                                <BuyCard game={game} key={index} />
+                                </>
+                            ))}
+                            </Card.Group>
+                        </Container>
+                    </Grid.Row>
+                </Grid>
+            ) : null }
+            {
+                <Dimmer active={loading} inverted size='massive'>
+                    <Loader inverted>Loading...</Loader>
+                </Dimmer>
+            }
         </>
     )
 }

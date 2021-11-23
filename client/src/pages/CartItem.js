@@ -1,10 +1,18 @@
 import React from "react";
+<<<<<<< HEAD
 import { useStoreContext } from "../utils/GlobalState";
+=======
+import { useSelector, useDispatch } from "react-redux";
+>>>>>>> cfabcb59b7cf7e17e380c8ac1525332bded4dd2f
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
 import { idbPromise } from "../utils/helpers";
 
 const CartItem = ({ item }) => {
+<<<<<<< HEAD
   const  dispatch = useStoreContext();
+=======
+  const [state, dispatch] = [useSelector(state => state), useDispatch()];
+>>>>>>> cfabcb59b7cf7e17e380c8ac1525332bded4dd2f
 
   const removeFromCart = (item) => {
     dispatch({
