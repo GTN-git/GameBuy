@@ -11,17 +11,7 @@ export const searchGames = query => {
             offset 0;
             fields id,name,cover.url,category,status,rating,platforms,first_release_date;
             where category = (0,8,9);
-            where rating != null;
             where cover.url != null;
         `
-    })
-    .then(response => {
-        if(response.ok) {
-            return response.json();
-        }
-    }).then(data => {
-        return data;
-    }).catch(err => {
-        console.log(err);
     });
 }
