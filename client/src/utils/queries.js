@@ -29,7 +29,15 @@ export const ALL_GAMES = gql`
     seller
   }
 }
-`
+`;
+
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($games: [ID]!) {
+    checkout(games: $games) {
+      session
+    }
+  }
+`;
 
 // export const QUERY_PRODUCTS = gql`
 //   query getProducts($category: ID) {
@@ -91,11 +99,3 @@ export const ALL_GAMES = gql`
 //     }
 //   }
 // `;
-
-export const QUERY_CHECKOUT = gql`
-  query getCheckout($products: [ID]!) {
-    checkout(products: $products) {
-      session
-    }
-  }
-`;
