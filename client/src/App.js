@@ -42,6 +42,7 @@ const AppMedia = createMedia({
     widescreen: 1920
   }
 });
+
 const mediaStyles = AppMedia.createMediaStyle();
 const { Media, MediaContextProvider } = AppMedia;
 

@@ -7,6 +7,7 @@ window.env = {
   "BESIEGE_UNITY_ASSEMBLIES": "Z:/gaemz/stam/steamapps/common/Besiege/Besiege_Data\\Managed/",
   "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
   "ChocolateyLastPathUpdate": "132584385477998828",
+<<<<<<< HEAD
   "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_28608_AHODKOZZZMJLGWOC",
 =======
   "USER": "hok",
@@ -35,6 +36,9 @@ window.env = {
   "WSL_DISTRO_NAME": "Ubuntu-20.04",
   "COLORTERM": "truecolor",
 >>>>>>> 2baf0b02cb39b32c42d20b122e26cab6a164eb50
+=======
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_568_AWBCKUDPJBVFCEGB",
+>>>>>>> feature/main-page
   "COLOR": "0",
   "COLORTERM": "truecolor",
   "CommonProgramFiles": "C:\\Program Files\\Common Files",
