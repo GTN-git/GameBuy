@@ -3,7 +3,6 @@ import { Container, Icon, Image, Menu, Sidebar } from "semantic-ui-react";
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 
-
 const leftItems = [
   {
     as: Link, name: "home", to:"/", content: "Home", key: "home",
