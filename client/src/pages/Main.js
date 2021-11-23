@@ -15,12 +15,7 @@ function Main() {
     return (
         <>
             {data ? (
-                <div className="user">
-                    <h1></h1>
-                   <div className='games'>
-
-                   </div>
-                </div>
+                {}
             ) : null}
             {
                 loading ? <h1> Loading... </h1> : null
