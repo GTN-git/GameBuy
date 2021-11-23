@@ -16,10 +16,10 @@ const gameSchema = new Schema({
         required: true
     },
 
-    // platform: {
-    //     type: String,
-    //     required: true
-    // },
+    release_date: {
+        type: Number,
+        required: true
+    },
 
     condition: {
         type: String,
@@ -34,7 +34,10 @@ const gameSchema = new Schema({
     seller: {
         type: String,
         required: true
-    }
+    },
+},
+{
+    timestamps: true
 });
 
 const Game = model('Game', gameSchema);

@@ -9,7 +9,7 @@ class SearchBox extends Component {
                     <label>Game Title</label>
                     <div className="ui action input">
                         <input type="text" placeholder='Search for a game...' name='game' required />
-                        <button class="ui button">Search</button>
+                        <button className="ui button">Search</button>
                     </div>
                 </Form.Field>
             </Form>

@@ -80,7 +80,7 @@ const resolvers = {
         });
     },
 
-    removeGame: async (parent, args) => {
+    removeGame: async (parent, args, context) => {
       const user = await Order.findByIdAndUpdate(
         context.user._id,
         { $pull: { games: { bookId: args.gameId } } },
@@ -89,7 +89,7 @@ const resolvers = {
       return user;
     },
 
-    addOrder: async (parent, { products }) => {
+    addOrder: async (parent, { products }, context) => {
       const order = new Order({ products });
 
       await User.findByIdAndUpdate(
@@ -100,7 +100,7 @@ const resolvers = {
       return order;
     },
 
-    removeOrder: async (parent, args) => {
+    removeOrder: async (parent, args, context) => {
       const user = await User.findByIdAndUpdate(
         context.user._id,
         { $pull: { games: { name: args.name } } },
