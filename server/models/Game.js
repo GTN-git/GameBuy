@@ -16,8 +16,8 @@ const gameSchema = new Schema({
         required: true
     },
 
-    platform: {
-        type: String,
+    release_date: {
+        type: Number,
         required: true
     },
 
@@ -31,10 +31,13 @@ const gameSchema = new Schema({
         required: true
     },
 
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }
+    seller: {
+        type: String,
+        required: true
+    },
+},
+{
+    timestamps: true
 });
 
 const Game = model('Game', gameSchema);

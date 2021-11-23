@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Form, Input, Label, Message } from 'semantic-ui-react'
 
 const SellForm = ({game, onSubmit, sellPost, setSellPost, errorMessage}) => {    
     const handleChange = (e, { value }) => {
         if(e.target.name === 'price') {
-            setSellPost( { ...sellPost, price: e.target.value, game: game });
+            setSellPost( { ...sellPost, price: Number(e.target.value), game: game });
         } else {
             setSellPost({ ...sellPost, condition: value, game: game });
         }
@@ -17,26 +17,26 @@ const SellForm = ({game, onSubmit, sellPost, setSellPost, errorMessage}) => {
                 <label>Condition:</label>
                 <Form.Radio
                     label='Poor'
-                    value='poor'
-                    checked={value === 'poor'}
+                    value='Poor'
+                    checked={value === 'Poor'}
                     onChange={handleChange}
                 />
                 <Form.Radio
                     label='Fair'
-                    value='fair'
-                    checked={value === 'fair'}
+                    value='Fair'
+                    checked={value === 'Fair'}
                     onChange={handleChange}
                 />
                 <Form.Radio
                     label='Good'
-                    value='good'
-                    checked={value === 'good'}
+                    value='Good'
+                    checked={value === 'Good'}
                     onChange={handleChange}
                 />
                 <Form.Radio
                     label='Excellent'
-                    value='excellent'
-                    checked={value === 'excellent'}
+                    value='Excellent'
+                    checked={value === 'Excellent'}
                     onChange={handleChange}
                 />
             </Form.Group>
