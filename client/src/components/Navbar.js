@@ -69,7 +69,7 @@ const NavbarMobile = (props) => {
       >
         <Menu fixed="top">
           <Menu.Item>
-            <Image size="mini" src="https://react.semantic-ui.com/logo.png" />
+          <h2 className="title">GameBuy</h2>
           </Menu.Item>
           <Menu.Item onClick={onToggle}>
             <Icon name="sidebar" />
@@ -96,7 +96,7 @@ const NavbarDesktop = (props) => {
   return (
     <Menu fixed="top">
       <Menu.Item>
-        <Image size="mini" src="https://react.semantic-ui.com/logo.png" />
+      <h2 className="title">GameBuy</h2>
       </Menu.Item>
 
       {leftItems.map((item) => (
