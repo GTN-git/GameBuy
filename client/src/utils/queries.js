@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import { gql } from "@apollo/client";
-=======
 import gql from 'graphql-tag';
 
 export const ALL_USERS = gql`
@@ -33,7 +30,6 @@ export const ALL_GAMES = gql`
   }
 }
 `
->>>>>>> feature/cart-workflow
 
 // export const QUERY_PRODUCTS = gql`
 //   query getProducts($category: ID) {
