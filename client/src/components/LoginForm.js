@@ -1,6 +1,7 @@
 // see SignupForm.js for comments
 import React, { useState } from "react"
 import { Form, Button, Input } from "semantic-ui-react"
+import { Message } from 'semantic-ui-react';
 
 // import { loginUser } from '../utils/API';
 import { LOGIN_USER } from "../utils/mutations"
@@ -24,7 +25,7 @@ const LoginForm = () => {
     event.preventDefault()
 
     try {
-      const response = await login({ variables: { email: userFormData.email, password: userFormData.password }});
+      const response = await login({ variables: { email: userFormData.email, password: userFormData.password } });
       console.log(response);
       const token = response.data.login.token;
       console.log(token);
@@ -42,9 +43,12 @@ const LoginForm = () => {
 
   return (
     <>
-      { showAlert && 
+      {showAlert &&
         <>
-          <h2>{errorMessage}</h2>
+          <Message negative>
+            <Message.Header>{errorMessage}</Message.Header>
+            <p>please enter a new email and/or username</p>
+          </Message>
         </>
       }
       <Form onSubmit={handleFormSubmit}>
