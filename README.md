@@ -1,55 +1,57 @@
 # GameBuy
 
  ## Table of contents
+* [Links](#Links)
 * [Installation](#installation)
-* [Instillation](#Installation)
-* [Technology](#technology)
-* [Team](#team)
+* [Technology](#Technology)
+* [Credits](#credits)
 * [License](#license)
 
-
 ---
-[Screenshot]()
-
 ## Description
 
   Gamebuy was built for gamers that were tired of being ripped off when trying to resell their used games. Gamebuy is the perfect platform for gamers to be able to list their old games for sale at a reasonable price, search for other used games to buy, and even purchase games that they want! 
 
+  ![Screenshot]()
+
+## Links
+
+* [Deployed Link]()
+* [GitHub Repository](https://github.com/GTN-git/GameBuy)
+
+---
+
+
 ## Installation
   For easiest use, please checkout the link provided to the deployed page. If you would like to checkout the app from the command line clone the code to a local repository and the checkout the following steps:
-  - Navigate to the root directory and run:
-    - `npm install` to install dependencies.
-- To start the server and client side application, Navigate to the root directory and in the command line run:
-  - `npm run develop`
+- Navigate to the root directory and run `npm install` to install the dependencies
+
+- To start the server, Navigate to the root directory and enter `npm run develop` in the command line.
 
 ## Technology
 
 - React
-- Redux
-- GraphQl
-- ApolloServer
-- Json Web Token
-- Mongoose
-- MongoDB
+- Apollo
 - Stripe
-- Semantic-UI
+- GraphQL
+- JSON Web token
+- Redux 
+- Semantic UI
 - CSS
-- Nodemon
-- Express.js
-- Jest
+- Node
 - Heroku
 - Javascript
+- Jest
 - bcrypt
 
   ---
 
-## Team
-[Hok Uy](https://github.com/hsengu) - [Kyle Kilmartin](https://github.com/KyleKilmartin371)
+## Credits
+[Cayman Gill](https://github.com/MaziveVelocity) - [Kyle Kilmartin](https://github.com/KyleKilmartin371)
 
-[George Ngo](https://github.com/GTN-git) - [Cayman Gill](https://github.com/MaziveVelocity)
+[Hok Uy](https://github.com/hsengu) - [George Ngo](https://github.com/GTN-git)
 
-  ### Have any questions or concerns? Feel free to reach out!
-https://github.com/GTN-git/GameBuy
+  ### If you have any questions or concerns, feel free to contact us!
 
 
 
