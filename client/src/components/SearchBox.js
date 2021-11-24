@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form } from 'semantic-ui-react';
 
 class SearchBox extends Component {
+    // returns searchbox component for render 
     render() {
         return (
             <Form onSubmit={this.props.onSubmit}>

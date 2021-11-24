@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 
+// sets up all user query
 export const ALL_USERS = gql`
     {
         users{
@@ -16,6 +17,7 @@ export const ALL_USERS = gql`
     }
 `;
 
+// sets up all games query
 export const ALL_GAMES = gql`
 {
   games {
@@ -30,6 +32,8 @@ export const ALL_GAMES = gql`
   }
 }
 `
+
+// sets up checkout query
 export const QUERY_CHECKOUT = gql`
   query getCheckout($products: [ID]!) {
     checkout(products: $products) {

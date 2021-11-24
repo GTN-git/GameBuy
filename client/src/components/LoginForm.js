@@ -14,13 +14,14 @@ const LoginForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [login, { error }] = useMutation(LOGIN_USER)
 
-  // 
+  //  function to handle form 
   const handleInputChange = (event) => {
     const { name, value } = event.target
     setUserFormData({ ...userFormData, [name]: value })
     console.log(event.target.name, ':', event.target.value)
   }
 
+  // function to handle login and return componet
   const handleFormSubmit = async (event) => {
     event.preventDefault()
 

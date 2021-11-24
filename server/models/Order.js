@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+// sets up order schema
 const orderSchema = new Schema({
     orderDate: {
         type: Date,

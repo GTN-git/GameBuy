@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../utils/actions";
 import { idbPromise } from "../utils/helpers";
 
+// function that takes and item for cor cart and displays cart item componet
 const CartItem = ({ item }) => {
   const [state, dispatch] = [useSelector(state => state), useDispatch()];
 
+  // removes item from cart
   const removeFromCart = (item) => {
     dispatch({
       type: REMOVE_FROM_CART,
@@ -14,6 +16,7 @@ const CartItem = ({ item }) => {
     idbPromise("cart", "delete", { ...item });
   };
 
+  // updates cart when changes are made
   const onChange = (e) => {
     const value = e.target.value;
 
@@ -35,6 +38,7 @@ const CartItem = ({ item }) => {
     }
   };
 
+  // cart item componet
   return (
     <div className="flex-row">
       <div>

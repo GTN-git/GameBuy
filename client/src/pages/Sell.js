@@ -10,7 +10,11 @@ import SellModal from '../components/SellModal';
 import Auth from '../utils/auth';
 import { ADD_GAME } from '../utils/mutations';
 
+// sell function that handles searching for games, and adds game to sale listing
+// and returns sell component
 const Sell = () => {
+
+    // gets all necessary data and functions for sell
     const [state, dispatch] = [useSelector(state => state), useDispatch()];
     const [showModal, setShowModal] = useState(false);
     const [selectedGame, setSelectedGame] = useState({});
@@ -21,6 +25,7 @@ const Sell = () => {
     const [page, setPage] = useState({ curr: state.page, start: (state.page - 1) * 10, end: state.page * 10 });
     const [ addGame, { error }] = useMutation(ADD_GAME);
 
+    // function that handles searching of the games
     const handleSearch = async (event) => {
         event.preventDefault();
 
@@ -48,6 +53,7 @@ const Sell = () => {
         }
     }
 
+    // funcstion that handles submitting of sell listing for the user
     const handleSubmit = async (event) => {
         if (Auth.loggedIn()) {
             if (event.target.agree.checked) {
@@ -73,6 +79,7 @@ const Sell = () => {
         }
     }
 
+    // updates page on change
     const handlePageChange = (event, { activePage }) => {
         setPage({ curr: activePage, start: (activePage - 1) * 10, end: activePage * 10 })
         dispatch({
@@ -81,10 +88,12 @@ const Sell = () => {
         })
     }
 
+    // generates index for items
     const calcIndex = (index) => {
         return (index + ((page.curr - 1) * 10));
     }
 
+    // sell componet
     return (
         <Container>
             <Grid columns='equal'>

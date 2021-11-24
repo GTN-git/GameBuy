@@ -1,3 +1,4 @@
+// creates all actions used for the application
 export const UPDATE_SEARCH_RESULTS = "UPDATE_SEARCH_RESULTS";
 export const UPDATE_PRODUCTS = "UPDATE_PRODUCTS";
 export const UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
