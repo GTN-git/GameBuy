@@ -34,7 +34,7 @@ const Cart = () => {
     if (!state.cart.length) {
       getCart();
     }
-  }, [state.cart.length, dispatch]);
+  }, [state.cart, state.cart.length, dispatch]);
 
   // generates a total for items in the cart
   function calculateTotal() {

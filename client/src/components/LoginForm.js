@@ -8,10 +8,9 @@ import { useMutation } from "@apollo/client"
 // function that handles longin scripts and returns login componet
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" })
-  const [validated] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
   const [errorMessage, setErrorMessage] = useState('');
-  const [login, { error }] = useMutation(LOGIN_USER)
+  const [login] = useMutation(LOGIN_USER);
 
   //  function to handle form 
   const handleInputChange = (event) => {
@@ -20,12 +19,9 @@ const LoginForm = () => {
     console.log(event.target.name, ':', event.target.value)
   }
 
-<<<<<<< HEAD
-  // function to handle login and return componet
-=======
   const validate = (event) => {
     const email = event.target.email;
-    const reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/g;
+    const reg = /^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\.([a-z\\.]{2,6})$/g;
     const test = reg.test(email);
     if (test) {
       alert('pass');
@@ -33,13 +29,8 @@ const LoginForm = () => {
     }
   }
 
-
-
-
->>>>>>> 63131af543ee4c3d378fb7f33d1e9eaeaf5f2de2
   const handleFormSubmit = async (event) => {
     event.preventDefault()
-    
 
     try {
       const response = await login({ variables: { email: userFormData.email, password: userFormData.password } });
