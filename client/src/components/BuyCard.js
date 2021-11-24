@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Auth from '../utils/auth';
 import { ADD_TO_CART } from '../utils/actions';
 
+// sellcard function to ddisplay 
 const SellCard = ({ game, index }) => {
     const [state, dispatch] = [useSelector(state => state), useDispatch()];
     const [currentUser] = useState(Auth.loggedIn() ? Auth.getProfile().data.username : '');
