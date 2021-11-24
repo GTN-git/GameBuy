@@ -4,7 +4,9 @@ require("dotenv").config();
 const secret = process.env.JWT_SECRET;
 const expiration = "2h";
 
+// functions for saving and generating authorization tokens
 module.exports = {
+  // middleware that checks authorization
   authMiddleware: function ({ req }) {
     // allows token to be sent via req.body, req.query, or headers
     let token = req.body.token || req.query.token || req.headers.authorization;
@@ -30,6 +32,8 @@ module.exports = {
     // return updated request object
     return req;
   },
+
+  // creates token
   signToken: function ({ username, email, _id }) {
     const payload = { username, email, _id };
 

@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const Game = require('./Game');
 const Order = require('./Order');
 
+// sets up user schema
 const userSchema = new Schema(
   {
     username: {
@@ -41,6 +42,7 @@ const userSchema = new Schema(
   }
 );
 
+// encrypts user's password before saving to data base
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
@@ -50,14 +52,17 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+// sets up a function to test if password is correct
 userSchema.methods.isCorrectPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
+// creates virtual for game count data
 userSchema.virtual('gameCount').get(function () {
   return this.games.length;
 });
 
+// creates virtual for order count data
 userSchema.virtual('orderCount').get(function () {
   return this.orders.length;
 });

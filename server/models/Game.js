@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+// sets up schema for game data
 const gameSchema = new Schema({
     name: {
         type: String,

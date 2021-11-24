@@ -42,6 +42,7 @@ const SignupForm = () => {
       event.stopPropagation();
     }
 
+    // tries to add user and displays error when it encounteres one
     try {
       const { data } = await addUser({
         variables: { ...userFormData }
@@ -61,6 +62,7 @@ const SignupForm = () => {
     });
   };
 
+  // login componet to be displayed
   return (
     <>
       <>

@@ -1,3 +1,5 @@
+// ignore this file due to it being used for testsing purposes
+
 import React from "react";
 import { Button } from 'semantic-ui-react'
 import { useMutation } from '@apollo/client';

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Container, Grid, Card, Dimmer, Loader } from 'semantic-ui-react';
 import { useQuery } from '@apollo/client';
-
 import { ALL_GAMES } from '../utils/queries';
 import BuyCard from '../components/BuyCard'
 
-
+// function that loads games and displays them to the main componet
 function Main() {
     const [ games, setGames ] = useState([]);
 
@@ -15,6 +14,7 @@ function Main() {
         }
     });
 
+    // main component
     return (
         <>
             {!loading ? (

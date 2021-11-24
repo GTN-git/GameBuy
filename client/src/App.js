@@ -16,10 +16,8 @@ import Cart from './pages/Cart';
 import { Provider } from 'react-redux';
 import store from './utils/store';
 import signUp from './pages/Signup';
-//import { StoreProvider } from "../src/utils/GlobalState";
 
-import Test from './pages/Test';
-
+// sets up appollo server for application 
 const client = new ApolloClient({
   request: operation => {
     const token = localStorage.getItem('id_token');
@@ -33,6 +31,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+// creates media break points for application
 const AppMedia = createMedia({
   breakpoints: {
     mobile: 0,
@@ -43,9 +42,11 @@ const AppMedia = createMedia({
   }
 });
 
+// sets up break points for app to use
 const mediaStyles = AppMedia.createMediaStyle();
 const { Media, MediaContextProvider } = AppMedia;
 
+// returns app componet
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -60,7 +61,6 @@ function App() {
                 <Route exact path='/sell' component={Sell} />
                 <Route exact path='/buy' component={Buy} />
                 <Route exact path='/cart' component={Cart} />
-                <Route exact path='/test' component={Test} />
                 <Route exact path='/register' component={signUp} />
                 <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
               </Switch>

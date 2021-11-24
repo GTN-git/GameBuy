@@ -18,7 +18,26 @@ import SellModal from "../components/SellModal"
 import Auth from "../utils/auth"
 import { ADD_GAME } from "../utils/mutations"
 
+// sell function that handles searching for games, and adds game to sale listing
+// and returns sell component
 const Sell = () => {
+<<<<<<< HEAD
+
+    // gets all necessary data and functions for sell
+    const [state, dispatch] = [useSelector(state => state), useDispatch()];
+    const [showModal, setShowModal] = useState(false);
+    const [selectedGame, setSelectedGame] = useState({});
+    const [sellPost, setSellPost] = useState({ game: {}, user: {}, condition: 'poor', price: '' });
+    const [errorMessage, setErrorMessage] = useState('');
+    const { searchResults } = state;
+    const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState({ curr: state.page, start: (state.page - 1) * 10, end: state.page * 10 });
+    const [ addGame, { error }] = useMutation(ADD_GAME);
+
+    // function that handles searching of the games
+    const handleSearch = async (event) => {
+        event.preventDefault();
+=======
   const [state, dispatch] = [useSelector((state) => state), useDispatch()]
   const [showModal, setShowModal] = useState(false)
   const [selectedGame, setSelectedGame] = useState({})
@@ -40,6 +59,7 @@ const Sell = () => {
 
   const handleSearch = async (event) => {
     event.preventDefault()
+>>>>>>> 63131af543ee4c3d378fb7f33d1e9eaeaf5f2de2
 
     setLoading(true)
     const results = await searchGames(event.target.game.value)
@@ -71,6 +91,7 @@ const Sell = () => {
     }
   }
 
+    // funcstion that handles submitting of sell listing for the user
     const handleSubmit = async (event) => {
         if (Auth.loggedIn()) {
             if (event.target.agree.checked) {
@@ -105,6 +126,33 @@ const Sell = () => {
     }
   }
 
+<<<<<<< HEAD
+    // updates page on change
+    const handlePageChange = (event, { activePage }) => {
+        setPage({ curr: activePage, start: (activePage - 1) * 10, end: activePage * 10 })
+        dispatch({
+            type: UPDATE_SELL_PAGE,
+            page: activePage
+        })
+    }
+
+    // generates index for items
+    const calcIndex = (index) => {
+        return (index + ((page.curr - 1) * 10));
+    }
+
+    // sell componet
+    return (
+        <Container>
+            <Grid columns='equal'>
+                <Grid.Column>
+                    <Grid.Row>
+                        <Container fluid>
+                            <SearchBox onSubmit={handleSearch} />
+                        </Container>
+                    </Grid.Row>
+                </Grid.Column>
+=======
   const handlePageChange = (event, { activePage }) => {
     setPage({
       curr: activePage,
@@ -191,6 +239,7 @@ const Sell = () => {
                   </Grid.Row>
                 </div>
               ) : (
+>>>>>>> 63131af543ee4c3d378fb7f33d1e9eaeaf5f2de2
                 <Grid.Row>
                   <h2><span role="img" aria-label="chicken">🐔</span> Nothing here but us chickens...</h2>
                 </Grid.Row>

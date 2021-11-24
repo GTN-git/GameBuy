@@ -1,6 +1,9 @@
 import React from "react";
 
+// function that takes items and returns componet
 const CartItem = ({item}) => {
+
+    // returns cart items componet
     return (
         <>
             <h2>Cart Items!</h2>
