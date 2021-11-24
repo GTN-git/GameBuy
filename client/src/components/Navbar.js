@@ -3,10 +3,7 @@ import { Container, Icon, Menu, Sidebar } from "semantic-ui-react";
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 
-<<<<<<< HEAD
 // navbar items left
-=======
->>>>>>> 63131af543ee4c3d378fb7f33d1e9eaeaf5f2de2
 const leftItems = [
   {
     as: Link, name: "home", to:"/", content: "Home", key: "home",
@@ -20,12 +17,6 @@ const leftItems = [
       name: "game"
     }
   },
-  {
-    as: Link, name: "buy", to:"/buy", content: "Buy", key: "buy",
-    icon: {
-      name: "search"
-    }
-  }
 ];
 
 // navbar for right items
