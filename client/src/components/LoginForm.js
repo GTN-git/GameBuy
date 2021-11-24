@@ -38,7 +38,7 @@ const LoginForm = () => {
     
 
     try {
-      const response = await login({ variables: { email: userFormData.email, password: userFormData.password }});
+      const response = await login({ variables: { email: userFormData.email, password: userFormData.password } });
       console.log(response);
       const token = response.data.login.token;
       console.log(token);
@@ -58,9 +58,12 @@ const LoginForm = () => {
 
   return (
     <>
-      { showAlert && 
+      {showAlert &&
         <>
-          <h2>{errorMessage}</h2>
+          <Message negative>
+            <Message.Header>{errorMessage}</Message.Header>
+            <p>please enter a new email and/or password</p>
+          </Message>
         </>
       }
       <Form onSubmit={handleFormSubmit}>

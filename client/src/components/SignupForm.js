@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_USER } from '../utils/mutations';
 import { Form, Button, Input } from 'semantic-ui-react';
+import { Message } from 'semantic-ui-react';
 
 import Auth from '../utils/auth';
 
@@ -14,7 +15,7 @@ const SignupForm = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const [addUser, { error}] = useMutation(ADD_USER);
+  const [addUser, { error }] = useMutation(ADD_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -42,13 +43,14 @@ const SignupForm = () => {
     }
 
     try {
-      const {data}= await addUser({
-        variables: {...userFormData}
+      const { data } = await addUser({
+        variables: { ...userFormData }
       });
 
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
+      setErrorMessage('Username or email already in use');
       setShowAlert(true);
     }
 
@@ -61,59 +63,61 @@ const SignupForm = () => {
 
   return (
     <>
-  <>
-      { showAlert && 
-        <>
-          <h2>{errorMessage}</h2>
-        </>
-      }
-      <Form onSubmit={handleFormSubmit}>
-        <Form>
-          <Form.Group>
-            <Form.Field
-              id="form-input-control-error-email"
-              control={Input}
-              label="Email"
-              placeholder="joe@schmoe.com"
-              value={userFormData.email}
-              name="email"
-              onChange={handleInputChange}
-              onBlur={validate}
-            />
-          </Form.Group>
+      <>
+        {showAlert &&
+          <>
+            <Message negative>
+              <Message.Header>{errorMessage}</Message.Header>
+              <p>please enter a new email and/or username</p>
+            </Message>
+          </>
+        }
+        <Form onSubmit={handleFormSubmit}>
+          <Form>
+            <Form.Group>
+              <Form.Field
+                id="form-input-control-error-email"
+                control={Input}
+                label="Email"
+                placeholder="joe@schmoe.com"
+                value={userFormData.email}
+                name="email"
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Form>
+
+          <Form>
+            <Form.Group>
+              <Form.Field
+                id="form-input-control-error-username"
+                control={Input}
+                label="Username"
+                placeholder="coolguy"
+                value={userFormData.username}
+                name="username"
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Form>
+
+
+          <Form.Field
+            value={userFormData.password}
+            onChange={handleInputChange}
+          >
+            <label>Enter Password</label>
+            <Input name='password' type="password" />
+          </Form.Field>
+          <Button
+            disabled={!(userFormData.email && userFormData.username && userFormData.password)}
+            type="submit"
+            variant="success"
+          >
+            Submit
+          </Button>
         </Form>
-
-        <Form>
-          <Form.Group>
-            <Form.Field
-              id="form-input-control-error-username"
-              control={Input}
-              label="Username"
-              placeholder="coolguy"
-              value={userFormData.username}
-              name="username"
-              onChange={handleInputChange}
-            />
-          </Form.Group>
-        </Form>
-
-
-        <Form.Field
-          value={userFormData.password}
-          onChange={handleInputChange}
-        >
-          <label>Enter Password</label>
-          <Input name='password' type="password" />
-        </Form.Field>
-        <Button
-          disabled={!(userFormData.email && userFormData.username && userFormData.password)}
-          type="submit"
-          variant="success"
-        >
-          Submit
-        </Button>
-      </Form>
-    </>
+      </>
     </>
   );
 };
