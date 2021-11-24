@@ -15,10 +15,6 @@ const Cart = () => {
   console.log(state);
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
-  // function toggleCart() {
-  //   dispatch({ type: TOGGLE_CART });
-  // }
-
   useEffect(() => {
     if (data) {
       stripePromise.then((res) => {
