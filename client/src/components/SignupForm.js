@@ -9,50 +9,54 @@ import Auth from '../utils/auth';
 const SignupForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-  // set state for form validation
-  const [validated] = useState(false);
+
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const [addUser, { error }] = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
 
-  const validate = (event) => {
-    const email = event.target.email;
-    const reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/g;
-    const test = reg.test(email);
-    if (test) {
-      alert('pass');
-      this.setState({value: email});
-    }
-  }
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
+    // check if form has everything
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
 
-    // tries to add user and displays error when it encounteres one
-    try {
-      const { data } = await addUser({
-        variables: { ...userFormData }
-      });
+    const validateEmail = async () => {
+      const email = event.target.email;
+      const reg = /^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\.([a-z\\.]{2,6})$/g;
+      const test = reg.test(email);
+      if (test) {
+        this.setState({value: email});
+        return true;
+      } else {
+        setErrorMessage("Please enter a valid email.");
+        return false;
+      }
+    }
 
-      Auth.login(data.addUser.token);
-    } catch (e) {
-      console.error(e);
-      setErrorMessage('Username or email already in use or invalid credential');
-      setShowAlert(true);
+    if(validateEmail) {
+    // tries to add user and displays error when it encounteres one
+      try {
+        const { data } = await addUser({
+          variables: { ...userFormData }
+        });
+
+        Auth.login(data.addUser.token);
+      } catch (e) {
+        console.error(e);
+        setErrorMessage('Username or email already in use or invalid credential');
+        setShowAlert(true);
+      }
     }
 
     setUserFormData({

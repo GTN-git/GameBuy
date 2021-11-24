@@ -12,7 +12,7 @@
 
   Gamebuy was built for gamers that were tired of being ripped off when trying to resell their used games. Gamebuy is the perfect platform for gamers to be able to list their old games for sale at a reasonable price, search for other used games to buy, and even purchase games that they want! 
 
-  ![Screenshot]()
+  ![Screenshot](./assets/Screenshots/Screenshot.png)
 
 ## Links
 
