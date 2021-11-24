@@ -1,13 +1,12 @@
-// see SignupForm.js for comments
 import React, { useState } from "react"
 import { Form, Button, Input } from "semantic-ui-react"
 import { Message } from 'semantic-ui-react';
 
-// import { loginUser } from '../utils/API';
 import { LOGIN_USER } from "../utils/mutations"
 import Auth from "../utils/auth"
 import { useMutation } from "@apollo/client"
 
+// function that handles longin scripts and returns login componet
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" })
   const [validated] = useState(false)
@@ -15,6 +14,7 @@ const LoginForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [login, { error }] = useMutation(LOGIN_USER)
 
+  // 
   const handleInputChange = (event) => {
     const { name, value } = event.target
     setUserFormData({ ...userFormData, [name]: value })

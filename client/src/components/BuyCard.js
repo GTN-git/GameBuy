@@ -5,11 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import Auth from '../utils/auth';
 import { ADD_TO_CART } from '../utils/actions';
 
-// sellcard function to ddisplay 
+// sellcard function to ddisplay buy
 const SellCard = ({ game, index }) => {
     const [state, dispatch] = [useSelector(state => state), useDispatch()];
     const [currentUser, setCurrentUser] = useState(Auth.loggedIn() ? Auth.getProfile().data.username : '');
 
+    //changes color based on rating
     const cardColors = (rating) => {
         switch (true) {
             case rating <= 25: return 'red';
@@ -20,6 +21,7 @@ const SellCard = ({ game, index }) => {
         }
     }
 
+    // add items to cart
     const addToCart = async () => {
         const response = await dispatch({
             type: ADD_TO_CART,
@@ -27,6 +29,7 @@ const SellCard = ({ game, index }) => {
         });
     }
 
+    //returns buyCard componet
     return (
         <Card color={cardColors(Math.round(game.rating))} fluid>
             <Card.Content>
