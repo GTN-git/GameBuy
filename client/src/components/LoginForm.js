@@ -62,7 +62,7 @@ const LoginForm = () => {
         <>
           <Message negative>
             <Message.Header>{errorMessage}</Message.Header>
-            <p>please enter a new email and/or password</p>
+            <p>Incorrect Username or Password, Please try again!</p>
           </Message>
         </>
       }
