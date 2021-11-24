@@ -51,7 +51,7 @@ const SignupForm = () => {
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
-      setErrorMessage('Username or email already in use');
+      setErrorMessage('Username or email already in use or invalid credential');
       setShowAlert(true);
     }
 
@@ -70,7 +70,7 @@ const SignupForm = () => {
           <>
             <Message negative>
               <Message.Header>{errorMessage}</Message.Header>
-              <p>please enter a new email and/or username</p>
+              <p>please enter a valid email and/or username</p>
             </Message>
           </>
         }
