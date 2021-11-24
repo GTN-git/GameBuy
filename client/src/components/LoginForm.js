@@ -1,6 +1,6 @@
 // see SignupForm.js for comments
 import React, { useState } from "react"
-import { Form, Button, Input } from "semantic-ui-react"
+import { Form, Button, Input, Message } from "semantic-ui-react"
 
 // import { loginUser } from '../utils/API';
 import { LOGIN_USER } from "../utils/mutations"
@@ -20,8 +20,22 @@ const LoginForm = () => {
     console.log(event.target.name, ':', event.target.value)
   }
 
+  const validate = (event) => {
+    const email = event.target.email;
+    const reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/g;
+    const test = reg.test(email);
+    if (test) {
+      alert('pass');
+      this.setState({value: email});
+    }
+  }
+
+
+
+
   const handleFormSubmit = async (event) => {
     event.preventDefault()
+    
 
     try {
       const response = await login({ variables: { email: userFormData.email, password: userFormData.password }});
@@ -30,7 +44,9 @@ const LoginForm = () => {
       console.log(token);
       Auth.login(token)
     } catch (e) {
-      console.error(e)
+      console.error(e);
+      setErrorMessage("Invalid Credential")
+      setShowAlert(true);
     }
 
     setUserFormData({
@@ -58,6 +74,7 @@ const LoginForm = () => {
               value={userFormData.email}
               name="email"
               onChange={handleInputChange}
+              onBlur={validate}
             />
           </Form.Group>
         </Form>
