@@ -47,7 +47,7 @@ const LoginForm = () => {
         <>
           <Message negative>
             <Message.Header>{errorMessage}</Message.Header>
-            <p>please enter a new email and/or username</p>
+            <p>please enter a new email and/or password</p>
           </Message>
         </>
       }
