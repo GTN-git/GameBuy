@@ -2,7 +2,10 @@ import React from "react";
 import { Modal, Button, Image, Header } from "semantic-ui-react";
 import SellForm from './SellForm';
 
+// function that takes in modal info and return a componet
 const SellModal = ({ showModal, setShowModal, game, onSubmit, sellPost, setSellPost, errorMessage }) => {
+
+    // sell model to be displayed
     return (
         (showModal && game.cover.url ?
             <Modal

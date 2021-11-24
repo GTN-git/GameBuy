@@ -3,8 +3,10 @@ const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
+// sets up query functions and mutations for client side use
 const resolvers = {
   Query: {
+    // gets user data
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
@@ -16,6 +18,8 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+
+    //gets all games data 
     games: async (parent, { username }) => {
       const params = username ? { username } : {};
       return Game.find(params).sort({ createdAt: -1 });
@@ -26,6 +30,7 @@ const resolvers = {
       return Game.findOne({ _id });
     },
 
+    // gets all users
     users: async () => {
       const users = await User.find()
         .select("-__v -password")
@@ -35,6 +40,7 @@ const resolvers = {
       
       return users;
     },
+
     // get a user by username
     user: async (parent, { username }) => {
       return User.findOne({ username })
@@ -81,6 +87,7 @@ const resolvers = {
   },
 
   Mutation: {
+    // adds user
     addUser: async (parent, args) => {
       const user = await User.create({ ...args });
       const token = signToken(user);
@@ -88,6 +95,7 @@ const resolvers = {
       return { token, user };
     },
 
+    // logs in user
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -105,6 +113,7 @@ const resolvers = {
       return { token, user };
     },
 
+    // adds game to database
     addGame: async (parent, args, context) => {
       const game = await Game.create({ ...args })
         .then(dbGameData => {
@@ -118,6 +127,7 @@ const resolvers = {
         });
     },
 
+    // removes game from data base
     removeGame: async (parent, args, context) => {
       const user = await Order.findByIdAndUpdate(
         context.user._id,
@@ -127,6 +137,7 @@ const resolvers = {
       return user;
     },
 
+    // adds order to database
     addOrder: async (parent, { products }, context) => {
       const order = new Order({ products });
 
@@ -138,6 +149,7 @@ const resolvers = {
       return order;
     },
 
+    // removes order from database
     removeOrder: async (parent, args, context) => {
       const user = await User.findByIdAndUpdate(
         context.user._id,

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Container, Grid, Card, Dimmer, Loader } from 'semantic-ui-react';
 import { useQuery } from '@apollo/client';
-
 import { ALL_GAMES } from '../utils/queries';
 import BuyCard from '../components/BuyCard'
 
@@ -14,6 +13,7 @@ function Main() {
         }
     });
 
+    // main component
     return (
         <>
             {!loading ? (

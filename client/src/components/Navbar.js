@@ -3,6 +3,7 @@ import { Container, Icon, Menu, Sidebar } from "semantic-ui-react";
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 
+// navbar items left
 const leftItems = [
   {
     as: Link, name: "home", to:"/", content: "Home", key: "home",
@@ -18,6 +19,7 @@ const leftItems = [
   },
 ];
 
+// navbar for right items
 const rightItems = [
   { as: Link, name: "cart", to:"/cart", content:"Cart", key: "cart",
     icon: {
@@ -26,8 +28,7 @@ const rightItems = [
   }
 ];
 
-console.log("loggedin: ", Auth.loggedIn());
-
+// checks if logged in to dynamically display navbar
 if(!Auth.loggedIn()) {
   rightItems.push({ as: Link, content: "Login", key: "login", to:"/login"},
                   { as: Link, content: "Register", key: "register", to:"/register" });
@@ -35,6 +36,7 @@ if(!Auth.loggedIn()) {
   rightItems.push({as: Link, content: "Logout", key: "logout", onClick: Auth.logout });
 }
 
+// function that returns navbar component
 const NavbarMobile = (props) => {
   const {
     children,

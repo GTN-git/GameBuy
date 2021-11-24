@@ -1,12 +1,11 @@
-// see SignupForm.js for comments
 import React, { useState } from "react"
 import { Form, Button, Input, Message } from "semantic-ui-react"
 
-// import { loginUser } from '../utils/API';
 import { LOGIN_USER } from "../utils/mutations"
 import Auth from "../utils/auth"
 import { useMutation } from "@apollo/client"
 
+// function that handles longin scripts and returns login componet
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" })
   const [validated] = useState(false)
@@ -14,12 +13,16 @@ const LoginForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [login, { error }] = useMutation(LOGIN_USER)
 
+  //  function to handle form 
   const handleInputChange = (event) => {
     const { name, value } = event.target
     setUserFormData({ ...userFormData, [name]: value })
     console.log(event.target.name, ':', event.target.value)
   }
 
+<<<<<<< HEAD
+  // function to handle login and return componet
+=======
   const validate = (event) => {
     const email = event.target.email;
     const reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/g;
@@ -33,6 +36,7 @@ const LoginForm = () => {
 
 
 
+>>>>>>> 63131af543ee4c3d378fb7f33d1e9eaeaf5f2de2
   const handleFormSubmit = async (event) => {
     event.preventDefault()
     
@@ -62,7 +66,7 @@ const LoginForm = () => {
         <>
           <Message negative>
             <Message.Header>{errorMessage}</Message.Header>
-            <p>please enter a new email and/or password</p>
+            <p>Incorrect Username or Password, Please try again!</p>
           </Message>
         </>
       }

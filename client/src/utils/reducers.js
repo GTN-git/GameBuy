@@ -21,6 +21,7 @@ import {
     products: []
   }
 
+  // exports reducer for redux
   export const reducer = (state = initialState, action) => {
     switch(action.type) {
         case UPDATE_SEARCH_RESULTS:

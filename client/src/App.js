@@ -15,8 +15,8 @@ import Cart from './pages/Cart';
 import { Provider } from 'react-redux';
 import store from './utils/store';
 import signUp from './pages/Signup';
-//import { StoreProvider } from "../src/utils/GlobalState";
 
+// sets up apollo server for application 
 const client = new ApolloClient({
   request: operation => {
     const token = localStorage.getItem('id_token');
@@ -30,6 +30,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+// creates media break points for application
 const AppMedia = createMedia({
   breakpoints: {
     mobile: 0,
@@ -40,9 +41,11 @@ const AppMedia = createMedia({
   }
 });
 
+// sets up break points for app to use
 const mediaStyles = AppMedia.createMediaStyle();
 const { Media, MediaContextProvider } = AppMedia;
 
+// returns app componet
 function App() {
   return (
     <ApolloProvider client={client}>

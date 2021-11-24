@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 
+// sets up all user query
 export const ALL_USERS = gql`
     {
         users{
@@ -16,6 +17,7 @@ export const ALL_USERS = gql`
     }
 `;
 
+// sets up all games query
 export const ALL_GAMES = gql`
 {
   games {

@@ -1,7 +1,10 @@
 import React from 'react'
 import { Form, Input, Label, Message } from 'semantic-ui-react'
 
+// function that hnadles the sale form and returns sell form component
 const SellForm = ({game, onSubmit, sellPost, setSellPost, errorMessage}) => {    
+    
+    // checks if target is price and sets price other wise sets other values of sell post
     const handleChange = (e, { value }) => {
         if(e.target.name === 'price') {
             setSellPost( { ...sellPost, price: Number(e.target.value), game: game });
@@ -10,7 +13,10 @@ const SellForm = ({game, onSubmit, sellPost, setSellPost, errorMessage}) => {
         }
     }
 
+    // sets value to the condition for the return
     const value = sellPost.condition;
+
+    // sell form component
     return (
         <Form id='sell-form' onSubmit={onSubmit}>
             <Form.Group inline required>

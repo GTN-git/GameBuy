@@ -1,4 +1,4 @@
-// Query for searching games{
+// Query for searching
 export const searchGames = query => {
     return fetch(`${process.env.REACT_APP_CORS_ANYWHERE}/${process.env.REACT_APP_API_GATEWAY}/v4/games`, {
         method: 'POST',
