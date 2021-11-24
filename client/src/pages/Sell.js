@@ -36,7 +36,7 @@ const Sell = () => {
     start: (state.page - 1) * 10,
     end: state.page * 10,
   })
-  const [addGame, { error }] = useMutation(ADD_GAME)
+  const [addGame] = useMutation(ADD_GAME)
 
   const handleSearch = async (event) => {
     event.preventDefault()
@@ -60,17 +60,30 @@ const Sell = () => {
       })
 
     if (results.length) {
-      dispatch({
-        type: UPDATE_SEARCH_RESULTS,
-        searchResults: results,
-      })
+      try {
+        dispatch({
+          type: UPDATE_SEARCH_RESULTS,
+          searchResults: results,
+        });
+      } catch (err) {
+          setErrorMessage(err);
+      }
     }
   }
 
     const handleSubmit = async (event) => {
         if (Auth.loggedIn()) {
             if (event.target.agree.checked) {
-                const response = await addGame({ variables: { ...sellPost.game, release_date: sellPost.game.first_release_date, cover: sellPost.game.cover.url, price: sellPost.price, condition: sellPost.condition, seller: Auth.getProfile().data.username }});
+                await addGame({ variables: {
+                  ...sellPost.game,
+                  release_date: sellPost.game.first_release_date,
+                  cover: sellPost.game.cover.url,
+                  price: sellPost.price,
+                  condition: sellPost.condition,
+                  seller: Auth.getProfile().data.username 
+                }}).catch(err => {
+                  setErrorMessage('Something went wrong creating');
+                });
 
         await dispatch(
           {
@@ -179,7 +192,7 @@ const Sell = () => {
                 </div>
               ) : (
                 <Grid.Row>
-                                                      <h2><span role="img" aria-label="chicken">🐔</span> Nothing here but us chickens...</h2>
+                  <h2><span role="img" aria-label="chicken">🐔</span> Nothing here but us chickens...</h2>
                 </Grid.Row>
               )}
             </div>
