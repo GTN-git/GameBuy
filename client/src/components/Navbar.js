@@ -3,7 +3,6 @@ import { Container, Icon, Image, Menu, Sidebar } from "semantic-ui-react";
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 
-
 const leftItems = [
   {
     as: Link, name: "home", to:"/", content: "Home", key: "home",
@@ -70,7 +69,7 @@ const NavbarMobile = (props) => {
       >
         <Menu fixed="top">
           <Menu.Item>
-            <Image size="mini" src="https://react.semantic-ui.com/logo.png" />
+          <h2 className="title">GameBuy</h2>
           </Menu.Item>
           <Menu.Item onClick={onToggle}>
             <Icon name="sidebar" />
@@ -97,7 +96,7 @@ const NavbarDesktop = (props) => {
   return (
     <Menu fixed="top">
       <Menu.Item>
-        <Image size="mini" src="https://react.semantic-ui.com/logo.png" />
+      <h2 className="title">GameBuy</h2>
       </Menu.Item>
 
       {leftItems.map((item) => (
