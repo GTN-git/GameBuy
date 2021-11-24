@@ -22,6 +22,16 @@ const SignupForm = () => {
     setUserFormData({ ...userFormData, [name]: value });
   };
 
+  const validate = (event) => {
+    const email = event.target.email;
+    const reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/g;
+    const test = reg.test(email);
+    if (test) {
+      alert('pass');
+      this.setState({value: email});
+    }
+  }
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 

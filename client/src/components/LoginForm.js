@@ -1,6 +1,5 @@
 import React, { useState } from "react"
-import { Form, Button, Input } from "semantic-ui-react"
-import { Message } from 'semantic-ui-react';
+import { Form, Button, Input, Message } from "semantic-ui-react"
 
 import { LOGIN_USER } from "../utils/mutations"
 import Auth from "../utils/auth"
@@ -21,9 +20,26 @@ const LoginForm = () => {
     console.log(event.target.name, ':', event.target.value)
   }
 
+<<<<<<< HEAD
   // function to handle login and return componet
+=======
+  const validate = (event) => {
+    const email = event.target.email;
+    const reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/g;
+    const test = reg.test(email);
+    if (test) {
+      alert('pass');
+      this.setState({value: email});
+    }
+  }
+
+
+
+
+>>>>>>> 63131af543ee4c3d378fb7f33d1e9eaeaf5f2de2
   const handleFormSubmit = async (event) => {
     event.preventDefault()
+    
 
     try {
       const response = await login({ variables: { email: userFormData.email, password: userFormData.password } });
@@ -32,7 +48,9 @@ const LoginForm = () => {
       console.log(token);
       Auth.login(token)
     } catch (e) {
-      console.error(e)
+      console.error(e);
+      setErrorMessage("Invalid Credential")
+      setShowAlert(true);
     }
 
     setUserFormData({
@@ -63,6 +81,7 @@ const LoginForm = () => {
               value={userFormData.email}
               name="email"
               onChange={handleInputChange}
+              onBlur={validate}
             />
           </Form.Group>
         </Form>

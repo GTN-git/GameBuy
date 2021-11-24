@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+.title {
+
+    background-image: linear-gradient(to left, darkblue, green, hotpink, red, yellow, orange, red);   -webkit-background-clip: text;
+    color: transparent;
+}
+
+.instructionMain {
+display: flex;
+ flex-direction: row;
+ justify-content: space-evenly;
+ margin: 10px;
+}
+
+.instructions {
+  margin: 30px 10px 30px 10px;
+}
+
+.Sell {
+  text-align: center;
+  margin: 10px;
+}
+
+.Circle {
+  text-align: center;
+}
+
