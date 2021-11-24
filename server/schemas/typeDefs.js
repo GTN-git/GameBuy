@@ -48,7 +48,12 @@ type Query {
   users: [User]
   user(username: String!): User
   games(username: String): [Game]
-  game(_id: ID!): Game
+  game(_id: ID!): Game 
+  checkout(games: [ID]!): Checkout
+}
+
+type Checkout {
+  session: ID
 }
 
 type Mutation{

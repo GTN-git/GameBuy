@@ -17,7 +17,8 @@ import {
   const initialState = {
     searchResults: [],
     page: 1,
-    cart: []
+    cart: [],
+    products: []
   }
 
   export const reducer = (state = initialState, action) => {

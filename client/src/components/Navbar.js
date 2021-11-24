@@ -16,12 +16,6 @@ const leftItems = [
       name: "game"
     }
   },
-  {
-    as: Link, name: "buy", to:"/buy", content: "Buy", key: "buy",
-    icon: {
-      name: "search"
-    }
-  }
 ];
 
 const rightItems = [

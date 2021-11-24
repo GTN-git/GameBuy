@@ -32,8 +32,8 @@ export const ALL_GAMES = gql`
 `;
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($products: [ID]!) {
-    checkout(products: $products) {
+  query getCheckout($games: [ID]!) {
+    checkout(games: $games) {
       session
     }
   }

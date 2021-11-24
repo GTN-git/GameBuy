@@ -5,7 +5,6 @@ import { useQuery } from '@apollo/client';
 import { ALL_GAMES } from '../utils/queries';
 import BuyCard from '../components/BuyCard'
 
-
 function Main() {
     const [ games, setGames ] = useState([]);
 

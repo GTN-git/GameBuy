@@ -11,14 +11,11 @@ import Navbar from './components/Navbar';
 import Main from './pages/Main';
 import Login from './pages/Login';
 import Sell from './pages/Sell';
-import Buy from './pages/Buy';
 import Cart from './pages/Cart';
 import { Provider } from 'react-redux';
 import store from './utils/store';
 import signUp from './pages/Signup';
 //import { StoreProvider } from "../src/utils/GlobalState";
-
-import Test from './pages/Test';
 
 const client = new ApolloClient({
   request: operation => {
@@ -58,9 +55,7 @@ function App() {
                 <Route exact path='/' component={Main} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/sell' component={Sell} />
-                <Route exact path='/buy' component={Buy} />
                 <Route exact path='/cart' component={Cart} />
-                <Route exact path='/test' component={Test} />
                 <Route exact path='/register' component={signUp} />
                 <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
               </Switch>

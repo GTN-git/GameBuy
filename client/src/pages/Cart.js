@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import CartItem from "./CartItem";
+import CartItem from "../components/CartItem";
 import Auth from "../utils/auth";
 import { useSelector, useDispatch } from "react-redux";
 import {  ADD_MULTIPLE_TO_CART } from "../utils/actions";
-import { idbPromise } from "../utils/helpers";
 import { QUERY_CHECKOUT } from "../utils/queries";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLazyQuery } from '@apollo/client';
@@ -12,7 +11,6 @@ const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const Cart = () => {
   const [state, dispatch] = [useSelector(state => state), useDispatch()];
-  console.log(state);
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   // function toggleCart() {
@@ -29,7 +27,7 @@ const Cart = () => {
 
   useEffect(() => {
     async function getCart() {
-      const cart = await idbPromise("cart", "get");
+      const cart = state.cart;
       dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
     }
 
@@ -51,7 +49,7 @@ const Cart = () => {
   function calculateTotal() {
     let sum = 0;
     state.cart.forEach((item) => {
-      sum += item.price * item.purchaseQuantity;
+      sum += item.price;
     });
     return sum.toFixed(2);
   }
@@ -60,12 +58,11 @@ const Cart = () => {
     const productIds = [];
 
     state.cart.forEach((item) =>{
-      for (let i = 0; i < item.purchaseQuantity; i++){
         productIds.push(item._id);
-      }
     });
+
     getCheckout({
-      variables: { products: productIds }
+      variables: { games: productIds }
     });
   }
 
@@ -74,8 +71,8 @@ const Cart = () => {
       <h2>Shopping Cart</h2>
       {state.cart.length ? (
         <div>
-          {state.cart.map((item) => (
-            <CartItem key={item._id} item={item} />
+          {state.cart.map((item, index) => (
+            <CartItem key={index} item={item} />
           ))}
           <div className="flex-row space-between">
             <strong>Total: ${calculateTotal()}</strong>

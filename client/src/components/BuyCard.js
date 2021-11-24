@@ -11,6 +11,7 @@ const SellCard = ({ game, index }) => {
     const [currentUser] = useState(Auth.loggedIn() ? Auth.getProfile().data.username : '');
     const [errorMessage, setErrorMessage] = useState('');
 
+
     const cardColors = (rating) => {
         switch (true) {
             case rating <= 25: return 'red';
