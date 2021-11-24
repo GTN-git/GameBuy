@@ -21,7 +21,6 @@ function Main() {
                 <Grid>
                     <Grid.Row align centered>
                         <Container>
-
                             <Card.Group itemsPerRow={2}>
                             { games.map((game, index) => (
                                 <>
