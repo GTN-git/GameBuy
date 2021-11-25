@@ -16,7 +16,7 @@
 
 ## Links
 
-* [Deployed Link](https://gamebuy143.herokuapp.com/)
+* [Deployed Link](https://gamebuy-light.herokuapp.com/)
 * [GitHub Repository](https://github.com/GTN-git/GameBuy)
 
 ---
